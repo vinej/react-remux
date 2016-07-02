@@ -1,2 +1,2 @@
-# revux
-A flux implementation with React and Mobx
+# ReMux
+A flux implementation with Reselver and Mobx
