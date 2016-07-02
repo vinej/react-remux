@@ -1,2 +1,2 @@
 # ReMux
-A flux implementation with Reselver and Mobx
+A flux implementation with Resolver and Mobx
