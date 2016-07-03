@@ -1,5 +1,3 @@
-// coul be set by a text function
-// 
 var testFunction = null
 
 export function setTestFunction(testFct) {

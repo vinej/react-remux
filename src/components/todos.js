@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react'
 import { dispatch } from '../resolvers/dispatcher'
+import TodoStore, { todoShape } from '../stores/todo_store'
 import { todoAdd, todoDelete, todoSetDesc } from '../actions/todo_actions'
 
 @observer
 class Todo extends Component {
+  static propTypes = {
+    todo:  React.PropTypes.shape(todoShape)  
+  }
 
   getTodoDoneClass(todo) {
     if (todo.done) {
@@ -13,7 +17,6 @@ class Todo extends Component {
       return { textDecoration: "none", color : 'black'}
     }
   }
-
   render() {
     return (  <tr> 
                 <td>{this.props.todo.id}</td> 
@@ -28,6 +31,10 @@ class Todo extends Component {
 export default class Todos extends Component {
   constructor(props) {
     super(props)
+  }
+
+  static propTypes = {
+    store: React.PropTypes.instanceOf(TodoStore),
   }
 
   render() {
