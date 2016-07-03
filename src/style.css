@@ -1,0 +1,41 @@
+/* reset for header - footer */
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 2rem;
+  min-height: 100%;
+}
+
+.header {
+  background-color: #6698D0;
+  font-size: 1.7rem;
+  padding: 0.5rem;
+  margin-bottom: 4px;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: .2rem;
+  background-color: lightgray;
+}
+
+a {
+  margin-left: 4px;
+  margin-right: 4px;
+  text-decoration: none;
+}
+
