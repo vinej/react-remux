@@ -10,13 +10,13 @@ export let Welcome = () =>
     <ul>
       <li>components receive a store as props (the state of the component)</li>
       <li>components use the store in read only mode</li>
-      <li>components dispatch actions to apply modifications to the store (the state)</li>
+      <li>components call actions creators to apply modifications to the store (the state)</li>
+      <li>actions creators dispact informations to resolvers</li>
       <li>resolvers resolve actions and call stores</li>
       <li>stores are observable with the Mobx @observable decorator</li>
       <li>Mobx refresh the components with the @observer decorator</li>
       <li>resolvers could be also middlewares to do something with the action before/after calling the stores</li>
       <li>TRY IT, IT'S VERY SIMPLE THIS WAY</li>
-      <li></li>
       <li>For a more complete example see: https://github.com/vinej/react-portal</li>
     </ul>
 

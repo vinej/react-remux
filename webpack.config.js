@@ -13,7 +13,7 @@ function getPlugins() {
 
   // Conditionally add plugins for Production builds.
   //if (isProd) {
-  //if (isProd) {
+  if (isProd === true) {
     plugins.push(new webpack.optimize.UglifyJsPlugin(
       {  
         compressor: { 
@@ -23,6 +23,7 @@ function getPlugins() {
           minimize: true
       }
       ));
+  }
       //  plugins.push(new webpack.DefinePlugin({ "process.env": { NODE_ENV: JSON.stringify('production') } }) );
   //}
   //  plugins.push(new webpack.DefinePlugin({ "process.env": { NODE_ENV: JSON.stringify('production') } }) );

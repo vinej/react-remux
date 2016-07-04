@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react'
-import { dispatch } from '../resolvers/dispatcher'
 import TodoStore, { todoShape } from '../stores/todo_store'
 import { todoAdd, todoDelete, todoSetDesc } from '../actions/todo_actions'
 
@@ -22,7 +21,7 @@ class Todo extends Component {
                 <td>{this.props.todo.id}</td> 
                 <td onClick={ () => this.props.todo.done = !this.props.todo.done} 
                     style={ this.getTodoDoneClass(this.props.todo) }>{this.props.todo.desc}</td> 
-                <td onClick={ () => dispatch(todoDelete(this.props.todo.id))}>del</td>
+                <td onClick={ () => todoDelete(this.props.todo.id)}>del</td>
               </tr> );
   }
 }
@@ -56,9 +55,9 @@ export default class Todos extends Component {
           <div>
             <input    type='text'  
                       value={ store.desc }
-                      onChange= { (event) => dispatch(todoSetDesc(event.target.value)) }/>
+                      onChange= { (event) => todoSetDesc(event.target.value) }/>
           </div>
-          <button className="pure-button" onClick={ () => dispatch(todoAdd()) }> add </button>
+          <button className="pure-button" onClick={ () => todoAdd() }> add </button>
         </div>
       )
    }

@@ -9,7 +9,8 @@ With 'ReMux' you have a very simple way to implement the following pattern
 * component => action => resolver => store => component
  * components receive a store as props (the state of the component)
  * components use the store in read only mode
- * components dispatch actions to apply modifications to the store (the state)
+ * components call actions creators to apply modifications to the store (the state)
+ * actions creators dispatch informations to resolvers
  * resolvers resolve actions and call stores
  * stores are observable with the Mobx @observable decorator
  * Mobx refresh the components with the @observer decorator
