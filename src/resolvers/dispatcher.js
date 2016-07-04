@@ -32,7 +32,7 @@ class Dispatcher {
 export let dispatcher = new Dispatcher();
 // logger first
 dispatcher.addResolver( loggerResolver )
-// thunk second
+// second second
 dispatcher.addResolver( thunkResolver )
 // no special order functionnal resolvers
 dispatcher.addResolver( todoResolver )
@@ -40,4 +40,3 @@ dispatcher.addResolver( todoResolver )
 dispatcher.addResolver( testResolver )
 
 export const dispatch = dispatcher.dispatch.bind(dispatcher)
-
