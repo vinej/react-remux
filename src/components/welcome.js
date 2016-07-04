@@ -23,3 +23,4 @@ export let Welcome = () =>
     <h3>Use the 'Todos' link from the header to test the todos example</h3>
     <h3>Happy coding</h3>
   </div>
+  
