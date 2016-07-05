@@ -5,7 +5,8 @@ import TodoStore, { todoShape } from '../stores/todo_store'
 @observer
 class Todo extends Component {
   static propTypes = {
-    todo:  React.PropTypes.shape(todoShape)  
+    todo:  React.PropTypes.shape(todoShape), 
+    store: React.PropTypes.instanceOf(TodoStore)
   }
 
   getTodoDoneClass(todo) {
