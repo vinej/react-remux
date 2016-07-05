@@ -1,16 +1,20 @@
 import { todoStore } from '../stores/todo_store'
-import { todoAddType, todoDeleteType, todoSetDescType } from '../actions/todo_actions'
+import { todoTypes  } from '../actions/todo_actions'
 
 export default function(action, next) {
+  const t = todoTypes
   switch(action.type) {
-    case todoAddType :
+    case t.todoAdd :
       todoStore.add()
       break;
-    case todoDeleteType :
+    case t.todoDelete :
       todoStore.delete(action.payload)
       break;
-    case todoSetDescType :
+    case t.todoSetDesc :
       todoStore.setDesc(action.payload)
+      break;
+    case t.todoSetDone :
+      todoStore.setDone(action.payload)
       break;
   }
   return next(null, action);

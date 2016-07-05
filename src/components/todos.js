@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react'
 import TodoStore, { todoShape } from '../stores/todo_store'
-import { todoAdd, todoDelete, todoSetDesc } from '../actions/todo_actions'
 
 @observer
 class Todo extends Component {
@@ -17,11 +16,13 @@ class Todo extends Component {
     }
   }
   render() {
+    const on = this.props.store.on
+    const todo = this.props.todo
     return (  <tr> 
-                <td>{this.props.todo.id}</td> 
-                <td onClick={ () => this.props.todo.done = !this.props.todo.done} 
-                    style={ this.getTodoDoneClass(this.props.todo) }>{this.props.todo.desc}</td> 
-                <td onClick={ () => todoDelete(this.props.todo.id)}>del</td>
+                <td>{todo.id}</td> 
+                <td onClick={ () => on.todoSetDone(todo, !todo.done) } 
+                    style={ this.getTodoDoneClass(todo) }>{todo.desc}</td> 
+                <td onClick={ () => on.todoDelete(todo.id)}>del</td>
               </tr> );
   }
 }
@@ -38,6 +39,7 @@ export default class Todos extends Component {
 
   render() {
       const store = this.props.store
+      const on = store.on
       return ( 
         <div className="pure-form">
           <table className='pure-table'>
@@ -49,15 +51,15 @@ export default class Todos extends Component {
               </tr>
             </thead>
             <tbody>
-            { store.todos.map( (todo) => <Todo key={todo.id} todo={todo} /> ) }
+            { store.todos.map( (todo) => <Todo key={todo.id} todo={todo} store={store} /> ) }
             </tbody>
           </table>
           <div>
             <input    type='text'  
                       value={ store.desc }
-                      onChange= { (event) => todoSetDesc(event.target.value) }/>
+                      onChange= { (event) => on.todoSetDesc(event.target.value) }/>
           </div>
-          <button className="pure-button" onClick={ () => todoAdd() }> add </button>
+          <button className="pure-button" onClick={ () => on.todoAdd() }> add </button>
         </div>
       )
    }

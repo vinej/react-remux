@@ -1,25 +1,42 @@
 import { dispatch } from '../resolvers/dispatcher'
 // same name of the type is the name of the function, but with a underscore. The pattern need that
-export let todoAddType= 'todo_Add'
-export function todoAdd() {
-  dispatch( {
-    type: todoAddType 
-  })
+export let todoTypes = {
+  todoAdd       : 'todo_Add',
+  todoDelete    : 'todo_Delete',
+  todoSetDesc   : 'todo_SetDesc',
+  todoSetDone   : 'todo_SetDone'
 }
 
-export let todoDeleteType= 'todo_Delete'
-export function todoDelete(id) {
-  dispatch( {
-    type: todoDeleteType,
-    payload: id
-  })
-}
+const t = todoTypes
 
-export let todoSetDescType= 'todo_SetDesc'
-export function todoSetDesc(desc) {
-  dispatch( {
-    type: todoSetDescType,
-    payload: desc
-  })
+class TodoActions {
+  todoAdd() {
+    dispatch( {
+      type: t.todoAdd
+    })
+  }
+
+  todoDelete(id) {
+    dispatch( {
+      type: t.todoDelete,
+      payload: id
+    })
+  }
+
+  todoSetDesc(desc) {
+    dispatch( {
+      type: t.todoSetDesc,
+      payload: desc
+    })
+  }
+
+  todoSetDone(todo, done) {
+    dispatch( {
+      type: t.todoSetDone,
+      payload: { todo, done }
+    })
+  }
+
 }
+export let todoActions = new TodoActions()
 
