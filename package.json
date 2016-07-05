@@ -8,7 +8,7 @@
     "dist": "webpack -p --progress --colors",
     "build": "webpack-dev-server -p --progress --colors  --history-api-fallback --watch"
   },
-  "author": "",
+  "author": "Jean-Yves Vinet",
   "license": "MIT",
   "dependencies": {
     "classnames": "^2.2.5",
