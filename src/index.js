@@ -5,8 +5,17 @@ import Todos from './components/todos'
 import App from './components/app'
 import { Welcome } from './components/welcome'
 import { todoStore } from './stores/todo_store'
+import { MockAuthService, MockTodoService } from './services/mock_services'
+import AuthService from './services/auth_service'
+import TodoService from './services/todo_service'
+import { authActions } from './actions/auth_actions'
 
 require('./style.css')
+
+// mock the services to do some tests
+AuthService.setInstance( new MockAuthService() )
+TodoService.setInstance( new MockTodoService() )
+authActions.authCheckToken()
 
 var todos = () => <Todos store={ todoStore } />
 

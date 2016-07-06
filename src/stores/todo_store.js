@@ -33,6 +33,10 @@ export default class TodoStore {
     return this.todos
   }
 
+  setAll(todos) {
+    this.todos = todos
+  }
+
   setDesc(desc) {
     this.desc = desc
   }

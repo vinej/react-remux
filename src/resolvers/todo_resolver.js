@@ -16,6 +16,9 @@ export default function(action, next) {
     case t.todoSetDone :
       todoStore.setDone(action.payload)
       break;
+    case t.todoGetAll :
+      todoStore.setAll(action.payload)
+      break;
   }
   return next(null, action);
 }

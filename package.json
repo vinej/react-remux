@@ -11,7 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "classnames": "^2.2.5",
+    "axios": "^0.12.0",
     "mobx": "^2.3.3",
     "mobx-react": "^3.3.4",
     "mobx-react-devtools": "^4.2.0",
