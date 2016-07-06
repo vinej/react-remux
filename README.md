@@ -17,8 +17,7 @@ With 'ReMux' you have a very simple way to implement the following pattern
  * resolvers could be also middlewares to do something with the action before/after calling the stores
 * TRY IT, IT'S VERY SIMPLE THIS WAY
 
-Todo
-* add SignIn, SignUp and SignOut pages
+In the example, the services are Mock : to test with real services use the REST services of this backend : https://github.com/vinej/react-portal-server
 
 For a more complete example see: https://github.com/vinej/react-portal
 
