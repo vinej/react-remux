@@ -37,7 +37,7 @@ class AuthActions {
     })
   }
 
-  authSignIn({ email, password }) {
+  authSignIn(email, password) {
     dispatch( {
       type: t.authSignIn,
       payload: function() {
@@ -55,7 +55,7 @@ class AuthActions {
     })
   }
 
-  authSignUp({ email, password, name }) {
+  authSignUp(email, password, name) {
     dispatch( {
       type: t.authSignUp,
       payload: function() {

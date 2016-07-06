@@ -4,6 +4,9 @@ import { Route, Router, browserHistory, IndexRoute } from 'react-router'
 import Todos from './components/todos'
 import App from './components/app'
 import { Welcome } from './components/welcome'
+import SignIn from './components/auth/signin'
+import SignUp from './components/auth/signup'
+import SignOut from './components/auth/signout'
 import { todoStore } from './stores/todo_store'
 import { MockAuthService, MockTodoService } from './services/mock_services'
 import AuthService from './services/auth_service'
@@ -24,8 +27,11 @@ ReactDOM.render(
     <Router history={browserHistory} >
       <Route path="/" component={ App } >
         <IndexRoute component={Welcome} />
-        <Route path="/todos" component={ todos } />
         <Route path="/welcome" component={ Welcome } />
+        <Route path="/todos" component={ todos } />
+        <Route path="/signin" component={ SignIn } />
+        <Route path="/signup" component={ SignUp } />
+        <Route path="/signout" component={ SignOut } />
       </Route>
     </Router>
   ), document.getElementById("app")

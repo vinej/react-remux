@@ -44,6 +44,7 @@ export default class AuthStore {
   }
 
   signInOrUp(token, name) {
+    console.log('signinup',token,name)
     localStorage.setItem('remux-token', token);
     localStorage.setItem('remux-name', name);
     transaction( () => {
@@ -65,7 +66,7 @@ export default class AuthStore {
   }
 
   authError(error) {
-
+    console.log(error)
   }
 }
 export let authStore = new AuthStore()

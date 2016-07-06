@@ -16,7 +16,7 @@ export class MockAuthService {
   }
 
   setAuthorizations(next, err) {
-    next(render, 'token')
+    next('token')
   }
 }
 

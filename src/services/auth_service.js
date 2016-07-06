@@ -20,26 +20,30 @@ export default class AuthService {
   signIn({ email, password }, next, err) {
     axios.post(`${ROOT_URL}/auth/signin?${PARAMETERS()}`, { email, password })
     .then(response => {
+      console.log(response.data.token)
       next(response.data.token, response.data.name); 
     })
-    .catch(response => err(response.data));
+    .catch(response => {
+      err(response.data)
+    });
   }
 
   signUp({ email, password, name }, next, err) {
     axios.post(`${ROOT_URL}/auth/signup?${PARAMETERS()}`, { email, password, name })
     .then(response => {
+      console.log(response.data.token)
       next(response.data.token, name); 
     })
     .catch(response => err(response.data));
   }
 
-  setAuthorizations(render, next, err) {
+  setAuthorizations(next, err) {
     axios.get(`${ROOT_URL}/api/actions?${PARAMETERS()}`, HEADERS())
     .then(response => {
-      next(render, response.data)
+      next(response.data)
     })
     .catch(response => {
-      err(response.data, render)
+      err(response.data)
     })
   }
 }
