@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react'
 import { observable } from 'mobx'
-import TodoStore, { todoShape } from '../stores/todo_store'
+import todoShape from '../stores/todo_store'
 
 @observer
 class Todo extends Component {
   static propTypes = {
-    todo:  React.PropTypes.shape(todoShape), 
-    store: React.PropTypes.instanceOf(TodoStore)
+    todo:  React.PropTypes.shape(todoShape)
   }
 
   getTodoDoneClass(todo) {
@@ -41,10 +40,6 @@ export default class Todos extends Component {
   componentWillMount() {
     const on = this.props.store.on
     on.todoGetAll()
-  }
-
-  static propTypes = {
-    store: React.PropTypes.instanceOf(TodoStore),
   }
 
   render() {
