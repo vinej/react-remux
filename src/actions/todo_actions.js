@@ -19,7 +19,7 @@ export default class TodoActions {
       type: t.todoGetAll,
       payload: function() {
         const service = TodoService.getInstance()
-        service.getAll(() => this._todoGetAll , () => this.todoError);
+        service.getAll( TodoActions._todoGetAll , TodoActions.todoError);
       }
     })
   }
@@ -59,9 +59,9 @@ export default class TodoActions {
   }
 
   static todoError(error) {
-    //
+    alert(error)
   }
 
 }
-export let todoActions = new TodoActions()
+
 

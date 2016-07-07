@@ -16,9 +16,6 @@ export default class TodoStore {
     this.on = TodoActions
     this._count = 3
     this.desc = ''
-    // add somes todos
-    this.todos.push( { id:1, desc: 'test', done: false} );
-    this.todos.push( { id:2, desc: 'test2', done: true} );
   }
 
   set desc(desc) {

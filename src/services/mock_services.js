@@ -15,8 +15,8 @@ export class MockAuthService {
 export class MockTodoService {
   getAll(next, err) {
     let todos = [ { id:1, desc: 'test', done: false}, 
-                  { id:2, desc: 'test 2', done: true}]
+                  { id:2, desc: 'test 2', done: true} ]
     // simulate a service call
-    setTimeout( () => next(todos), 300 )
+    next(todos)
   }
 }
