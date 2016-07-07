@@ -12,6 +12,7 @@ import { MockAuthService, MockTodoService } from './services/mock_services'
 import AuthService from './services/auth_service'
 import TodoService from './services/todo_service'
 import AuthActions from './actions/auth_actions'
+import RequireAuth from './components/auth/require_auth'
 
 require('./style.css')
 
@@ -28,7 +29,7 @@ ReactDOM.render(
       <Route path="/" component={ App } >
         <IndexRoute component={Welcome} />
         <Route path="/welcome" component={ Welcome } />
-        <Route path="/todos" component={ todos } />
+        <Route path="/todos" component={ RequireAuth(todos) } />
         <Route path="/signin" component={ SignIn } />
         <Route path="/signup" component={ SignUp } />
         <Route path="/signout" component={ SignOut } />

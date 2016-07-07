@@ -12,6 +12,7 @@ export let authTypes = {
 
 const t = authTypes
 
+// must use static method to pass them as callback
 export default class AuthActions {
   static authCheckToken() {
     dispatch( {

@@ -7,7 +7,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Header store={authStore}/>
+        <Header store={authStore} />
         { this.props.children }
         <Footer />
       </div> )

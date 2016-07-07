@@ -1,18 +1,10 @@
 export class MockAuthService {
   signIn({ email, password }, next, err) {
-    if (email === 'jyvinet@hotmail.ca' && password === 'test') {
-      next('token', 'Jean-Yves')
-    } else {
-      err('Unauthorized');
-    }
+    next('token', 'Jean-Yves')
   }
 
   signUp({ email, password, name }, next, err) {
-    if (email === 'jyvinet@hotmail.ca' && password === 'test') {
-      next('token', 'Jean-Yves') 
-    } else {
-      err('Unauthorized');
-    }
+    next('token', 'Jean-Yves') 
   }
 
   setAuthorizations(next, err) {
