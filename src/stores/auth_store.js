@@ -27,7 +27,7 @@ export default class AuthStore {
   setAuthorizations(authorizations) {
     transaction( () => {
       this.isAutorizationInit = true
-      this.authorizations = authorizations
+      //this.authorizations = authorizations
     })
     browserHistory.push('/todos')
   }
