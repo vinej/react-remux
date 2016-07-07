@@ -1,6 +1,6 @@
 import React from 'react'
 import { observable } from 'mobx'
-import { todoActions } from '../actions/todo_actions'
+import TodoActions from '../actions/todo_actions'
 
 export const todoShape = {
   id : React.PropTypes.number,
@@ -13,7 +13,7 @@ export default class TodoStore {
   @observable desc
 
   constructor() {
-    this.on = todoActions
+    this.on = TodoActions
     this._count = 3
     this.desc = ''
     // add somes todos

@@ -12,61 +12,62 @@ export let authTypes = {
 
 const t = authTypes
 
-class AuthActions {
-  authCheckToken() {
+export default class AuthActions {
+  static authCheckToken() {
     dispatch( {
       type: t.authCheckToken,
     })
   }
 
-  authSetAuthorizations() {
+  static authSetAuthorizations() {
     dispatch( {
       type: t.authSetAuthorizations,
       payload: function() {
         const service = AuthService.getInstance()
-        service.setAuthorizations(() =>this._authSetAuthorizations , () => this.authError);
+        service.setAuthorizations(AuthActions._authSetAuthorizations , AuthActions.authError);
       }
     })
   }
 
   // called from service
-  _authSetAuthorizations(authorizations) {
+  static _authSetAuthorizations(authorizations) {
     dispatch( {
       type: t.authSetAuthorizations,
       payload: authorizations
     })
   }
 
-  authSignIn(email, password) {
+  static authSignIn(email, password) {
     dispatch( {
       type: t.authSignIn,
       payload: function() {
         const service = AuthService.getInstance()
-        service.signIn({ email, password }, () => this._authSignIn, () => this.authError)
+        service.signIn({ email, password }, AuthActions._authSignIn, AuthActions.authError)
       }
     })
   }
 
   // called from service
-  _authSignIn(token, name) {
+  static _authSignIn(token, name) {
+    console.log('next 2')
     dispatch( {
       type: t.authSignIn,
       payload: { token, name }
     })
   }
 
-  authSignUp(email, password, name) {
+  static authSignUp(email, password, name) {
     dispatch( {
       type: t.authSignUp,
       payload: function() {
         const service = AuthService.getInstance()
-        service.signUp({ email, password, name }, () => this._authSignUp, () => this.authError)
+        service.signUp({ email, password, name }, AuthActions._authSignUp, AuthActions.authError)
       }
     })
   }
 
   // called from service
-  _authSignUp(token, name) {
+  static _authSignUp(token, name) {
     dispatch( {
       type: t.authSignUp,
       payload: { token, name }
@@ -74,17 +75,17 @@ class AuthActions {
   }
 
     // called from service
-  authSignOut() {
+  static authSignOut() {
     dispatch( {
       type: t.authSignOut
     })
   }
 
-  authError(error) {
+  static authError(error) {
     dispatch( {
       type: t.authError,
       payload : error
     })
   }
 }
-export let authActions = new AuthActions()
+

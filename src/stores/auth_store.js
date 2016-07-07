@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { observable, action, transaction } from 'mobx'
-import { authActions } from '../actions/auth_actions'
+import AuthActions from '../actions/auth_actions'
+import { browserHistory } from 'react-router'
 
 export default class AuthStore {
   @observable email = ""
@@ -28,6 +29,7 @@ export default class AuthStore {
       this.isAutorizationInit = true
       this.authorizations = authorizations
     })
+    browserHistory.push('/todos')
   }
 
   checkToken() {
@@ -38,8 +40,15 @@ export default class AuthStore {
         this.authenticated = true
         this.name = name
         this.errorMessage = ''
-        authActions.authSetAuthorizations()
+        AuthActions.authSetAuthorizations()
       })
+    } else {
+      transaction( () => {
+        this.authenticated = false
+        this.name = ''
+        this.errorMessage = ''
+      })
+      browserHistory.push('/signin')
     }
   }
 
@@ -52,7 +61,7 @@ export default class AuthStore {
       this.name = name;
       this.errorMessage = '';
     });
-    authActions.authSetAuthorizations()
+    AuthActions.authSetAuthorizations()
   }
 
   signOut() {

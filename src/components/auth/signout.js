@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { authActions} from '../../actions/auth_actions'
+import AuthActions from '../../actions/auth_actions'
 
 export default class SignOut extends Component {
   componentWillMount() {
-    authActions.authSignOut()
+    AuthActions.authSignOut()
   }
 
   render() {

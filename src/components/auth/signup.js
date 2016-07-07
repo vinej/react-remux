@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { observer } from "mobx-react"
 import { observable } from 'mobx'
-import { authActions} from '../../actions/auth_actions'
+import AuthActions from '../../actions/auth_actions'
 import AuthStore from '../../stores/auth_store'
 
 @observer
@@ -21,7 +21,7 @@ export default class SignUp extends Component {
   handleSend(event) {
     event.preventDefault()
     if (this.validate() === true) {
-      authActions.authSignUp(this.email,this.password,this.name)      
+      AuthActions.authSignUp(this.email,this.password,this.name)      
     }
   }
 

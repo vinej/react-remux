@@ -70,7 +70,7 @@ export default class Todos extends Component {
                       onChange = { (event) => this._desc = event.target.value }
                       onBlur= { (event) => on.todoSetDesc(event.target.value) }/>
           </div>
-          <button className="pure-button" onClick={ () => on.todoAdd() }> add </button>
+          <button className="pure-button" onClick={ () => { on.todoAdd(); this._desc= ''} }> add </button>
         </div>
       )
    }

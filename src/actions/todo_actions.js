@@ -12,14 +12,9 @@ export let todoTypes = {
 
 const t = todoTypes
 
-class TodoActions {
-  constructor() {
-    //this._todoGetAll = this._todoGetAll.bind(this)
-    //this.todoError = this.todoError.bind(this)
-  }
+export default class TodoActions {
 
-
-  todoGetAll() {
+  static todoGetAll() {
     dispatch( {
       type: t.todoGetAll,
       payload: function() {
@@ -29,41 +24,41 @@ class TodoActions {
     })
   }
 
-  _todoGetAll(todos) {
+  static _todoGetAll(todos) {
     dispatch( {
       type: t.todoGetAll,
       payload: todos
     })
   }
 
-  todoAdd() {
+  static todoAdd() {
     dispatch( {
       type: t.todoAdd
     })
   }
 
-  todoDelete(id) {
+  static todoDelete(id) {
     dispatch( {
       type: t.todoDelete,
       payload: id
     })
   }
 
-  todoSetDesc(desc) {
+  static todoSetDesc(desc) {
     dispatch( {
       type: t.todoSetDesc,
       payload: desc
     })
   }
 
-  todoSetDone(todo, done) {
+  static todoSetDone(todo, done) {
     dispatch( {
       type: t.todoSetDone,
       payload: { todo, done }
     })
   }
 
-  todoError(error) {
+  static todoError(error) {
     //
   }
 
