@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react'
 import { observable } from 'mobx'
-import todoShape from '../stores/todo_store'
+
+const todoShape = {
+  id : React.PropTypes.number,
+  desc : React.PropTypes.string,
+  done : React.PropTypes.bool
+}
 
 @observer
 class Todo extends Component {

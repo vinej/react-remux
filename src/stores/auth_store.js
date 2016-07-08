@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
 import { observable, action, transaction } from 'mobx'
 import AuthActions from '../actions/auth_actions'
-import { browserHistory } from 'react-router'
+import RefRoutes from '../ref_routes'
 
 export default class AuthStore {
   @observable email = ""
@@ -29,7 +28,7 @@ export default class AuthStore {
       this.isAutorizationInit = true
       //this.authorizations = authorizations
     })
-    browserHistory.push('/todos')
+    RefRoutes.routeTodo()
   }
 
   checkToken() {
@@ -48,7 +47,7 @@ export default class AuthStore {
         this.name = ''
         this.errorMessage = ''
       })
-      browserHistory.push('/signin')
+      RefRoutes.routeSignIn()
     }
   }
 
