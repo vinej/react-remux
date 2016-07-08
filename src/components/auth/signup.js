@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { observer } from "mobx-react"
 import { observable } from 'mobx'
 import AuthActions from '../../actions/auth_actions'
-import AuthStore from '../../stores/auth_store'
 
 @observer
 export default class SignUp extends Component {

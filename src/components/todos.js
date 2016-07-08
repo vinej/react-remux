@@ -21,6 +21,7 @@ class Todo extends Component {
       return { textDecoration: "none", color : 'black'}
     }
   }
+  
   render() {
     const on = this.props.store.on
     const todo = this.props.todo
