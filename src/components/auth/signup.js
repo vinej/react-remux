@@ -28,23 +28,23 @@ export default class SignUp extends Component {
     this.error = ''
     let isValidate = true
     if ( this.email === '') {
-      this.error = this.error + ': Email is required!'
+      this.error = 'Email is required!'
       isValidate = false
     }
     if ( this.password === '') {
-      this.error = this.error + ': Password is required!'
+      this.error = this.error + (isValidate === false ?' : ' : '') + 'Password is required!'
       isValidate = false
     }
     if ( this.passwordConfirm === '') {
-      this.error = this.error + ': Password confirm is required!'
+      this.error = this.error + (isValidate === false ?' : ' : '') + 'Password confirm is required!'
       isValidate = false
     }
     if ( this.password !== this.passwordConfirm) {
-      this.error = this.error + ': Both password are not equal!'
+      this.error = this.error + (isValidate === false ?' : ' : '') + 'Both password are not equal!'
       isValidate = false
     }
     if ( this.name === '') {
-      this.error = this.error + ': Name is required!'
+      this.error = this.error + (isValidate === false ?' : ' : '') + 'Name is required!'
       isValidate = false
     }
     return isValidate
@@ -92,6 +92,3 @@ export default class SignUp extends Component {
     )
   }
 }
-
-
-

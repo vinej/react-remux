@@ -23,5 +23,3 @@ export default function(action, next) {
   }
   return next(null, action);
 }
-
-

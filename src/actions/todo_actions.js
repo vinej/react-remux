@@ -61,7 +61,4 @@ export default class TodoActions {
   static todoError(error) {
     alert(error)
   }
-
 }
-
-

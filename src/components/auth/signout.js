@@ -10,4 +10,3 @@ export default class SignOut extends Component {
     return <div>Sorry to see you leave</div>
   }
 }
-

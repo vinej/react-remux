@@ -25,11 +25,3 @@ For a more complete example see: https://github.com/vinej/react-portal
   * npm start
 
 JYV
-
-
-
-
-
-
-
-

@@ -27,12 +27,12 @@ export default class SignIn extends Component {
     this.error = ''
     let isValidate = true
     if ( this.email === '') {
-      this.error = this.error + ': Email is required'
+      this.error = 'Email is required'
       isValidate = false
     }
 
     if ( this.password === '') {
-      this.error = this.error + ': Password is required'
+      this.error = this.error + (isValidate === false ?' : ' : '') + 'Password is required'
       isValidate = false
     }
     return isValidate
@@ -61,7 +61,7 @@ export default class SignIn extends Component {
           <div>
             <button className='pure-button' onClick={ this.handleSend }>SignIn</button>
           </div>
-          { this.error || '' }
+          <div style={{ color : 'red'}}>{ this.error || '' }</div>
         </fielset>
       </form>
     )
