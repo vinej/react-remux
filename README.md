@@ -3,7 +3,7 @@
 Welcome to ReMux
 
 The boilerplate give you a minimum example to use Mobx with the ES6 syntax and the 'ReMux' flux pattern
-* ReMux stand for : **Re**solver **M**obx Fl**ux** pattern and it's inspired by Redux
+* ReMux stand for : **Re**act **M**obx Fl**ux** pattern and it's inspired by Redux
 
 With 'ReMux' you have a very simple way to implement the following pattern
 * component => action => resolver => store => component
