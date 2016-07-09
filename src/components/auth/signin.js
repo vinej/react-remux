@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
 import { observer } from "mobx-react"
-import { observable } from 'mobx'
 import AuthActions from '../../actions/auth_actions'
-import AuthStore from '../../stores/auth_store'
 
 @observer
 export default class SignIn extends Component {
-  @observable email = ''
-  @observable password = ''
-  @observable error = ''
 
   constructor(props) {
     super(props)
@@ -17,28 +12,31 @@ export default class SignIn extends Component {
   }
 
   handleSend(event) {
+    const store = this.props.store
     event.preventDefault()
     if (this.validate() === true) {
-      AuthActions.authSignIn(this.email,this.password)      
+      AuthActions.authSignIn(store.email, store.password)      
     }
   }
 
   validate() {
-    this.error = ''
+    const store = this.props.store
+    store.error = ''
     let isValidate = true
-    if ( this.email === '') {
-      this.error = 'Email is required'
+    if ( store.email === '') {
+      store.error = 'Email is required'
       isValidate = false
     }
 
-    if ( this.password === '') {
-      this.error = this.error + (isValidate === false ?' : ' : '') + 'Password is required'
+    if ( store.password === '') {
+      store.error = store.error + (isValidate === false ?' : ' : '') + 'Password is required'
       isValidate = false
     }
     return isValidate
   }
 
   render() {
+    const store = this.props.store
     return (
       <form className='pure-form pure-form pure-form-stacked'>
         <fielset>
@@ -46,22 +44,21 @@ export default class SignIn extends Component {
           <div className='pure-control'>
             <label required>Email</label>
             <input name="email" 
-                    id="email"
-                   value={ this.email }
-                   onChange={(e) => this.email = e.target.value}/>
+                   value={ store.email }
+                   onChange={(e) => store.email = e.target.value}/>
           </div>
 
           <div>
             <label required>Password</label>
             <input name="password" 
                     type="password" 
-                    value={this.password}
-                    onChange={(e) => this.password = e.target.value} />
+                    value={ store.password }
+                    onChange={(e) => store.password = e.target.value} />
           </div>
           <div>
             <button className='pure-button' onClick={ this.handleSend }>SignIn</button>
           </div>
-          <div style={{ color : 'red'}}>{ this.error || '' }</div>
+          <div style={{ color : 'red'}}>{ store.error || '' }</div>
         </fielset>
       </form>
     )

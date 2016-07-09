@@ -1,15 +1,12 @@
-import { observable, action, transaction } from 'mobx'
+import { action } from 'mobx'
 import AuthActions from '../actions/auth_actions'
 import RefRoutes from '../ref_routes'
+import { appState } from './app_state'
 
 export default class AuthStore {
-  @observable email = ""
-  @observable name = ""
-  @observable authenticated = false
-  @observable errorMessage = ''
-
-  isAutorizationInit = false
-  //authorizations = []
+  constructor() {
+    this.state = appState.user
+  }
 
   isActionAvailable(actiontype) {
     return true
@@ -20,57 +17,54 @@ export default class AuthStore {
   }
 
   getError() {
-    return this.errorMessage
+    return this.state.errorMessage
   }
 
+  @action
   setAuthorizations(authorizations) {
-    transaction( () => {
-      this.isAutorizationInit = true
-      //this.authorizations = authorizations
-    })
+    this.state.isAutorizationInit = true
+    //this.authorizations = authorizations
     RefRoutes.routeTodo()
   }
 
+  isAuthenticated() {
+    return this.state.authenticated
+  }
+
+  @action
   checkToken() {
     const token = localStorage.getItem('remux-token')
     if (token != null && token != '') {
       const name = localStorage.getItem('remux-name')
-      transaction( () => {
-        this.authenticated = true
-        this.name = name
-        this.errorMessage = ''
-        AuthActions.authSetAuthorizations()
-      })
+      this.state.authenticated = true
+      this.state.name = name
+      this.state.errorMessage = ''
+      AuthActions.authSetAuthorizations()
     } else {
-      transaction( () => {
-        this.authenticated = false
-        this.name = ''
-        this.errorMessage = ''
-      })
+      this.state.authenticated = false
+      this.state.name = ''
+      this.state.errorMessage = ''
       RefRoutes.routeSignIn()
     }
   }
 
+  @action
   signInOrUp(token, name) {
-    console.log('signinup',token,name)
     localStorage.setItem('remux-token', token);
     localStorage.setItem('remux-name', name);
-    transaction( () => {
-      this.authenticated = true;
-      this.name = name;
-      this.errorMessage = '';
-    });
+    this.state.authenticated = true;
+    this.state.name = name;
+    this.state.errorMessage = '';
     AuthActions.authSetAuthorizations()
   }
 
+  @action
   signOut() {
     localStorage.removeItem('remux-token');
     localStorage.removeItem('remux-name');
-    transaction(() => {
-      this.authenticated = false;
-      this.name = '';
-      this.errorMessage = '';
-    });
+    this.state.authenticated = false;
+    this.state.name = '';
+    this.state.errorMessage = '';
   }
 
   authError(error) {

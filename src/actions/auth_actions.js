@@ -1,5 +1,5 @@
-import AuthService from '../services/auth_service';
 import { dispatch } from '../resolvers/dispatcher'
+import AuthService from '../services/auth_service';
 
 export let authTypes = {
   authSetAuthorizations   : 'auth_SetAuthorizations',

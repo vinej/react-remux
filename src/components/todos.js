@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react'
-import { observable } from 'mobx'
 
 const todoShape = {
   id : React.PropTypes.number,
@@ -36,15 +35,13 @@ class Todo extends Component {
 
 @observer
 export default class Todos extends Component {
-  @observable _desc = ''
-
   constructor(props) {
     super(props)
-    this.desc= ''
   }
 
   componentWillMount() {
     const on = this.props.store.on
+    this.props.store.desc = ''
     on.todoGetAll()
   }
 
@@ -67,11 +64,11 @@ export default class Todos extends Component {
           </table>
           <div>
             <input    type='text'  
-                      value = { this._desc }
-                      onChange = { (event) => this._desc = event.target.value }
+                      value = { store.desc }
+                      onChange = { (event) => store.desc = event.target.value }
                       onBlur= { (event) => on.todoSetDesc(event.target.value) }/>
           </div>
-          <button className="pure-button" onClick={ () => { on.todoAdd(); this._desc= ''} }> add </button>
+          <button className="pure-button" onClick={ () => { on.todoAdd(); store.desc = ''} }> add </button>
         </div>
       )
    }

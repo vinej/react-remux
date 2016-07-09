@@ -8,7 +8,7 @@ export class MockAuthService {
   }
 
   setAuthorizations(next, err) {
-    next('token')
+    next([])
   }
 }
 

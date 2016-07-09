@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { observer } from "mobx-react";
-import { authStore } from '../../stores/auth_store';
 
-@observer
-export default function(ComposedComponent) {
+export default function(ComposedComponent, store) {
   class Authentication extends Component {
 
     static contextTypes = {
@@ -11,13 +8,13 @@ export default function(ComposedComponent) {
     }
 
     componentWillMount() {
-      if (!authStore.authenticated) {
+      if (!store.authenticated) {
         this.context.router.push('/');
       }
     }
 
     componentWillUpdate(nextProps) {
-      if (!authStore.authenticated) {
+      if (!store.authenticated) {
         this.context.router.push('/');
       }
     }
