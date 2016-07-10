@@ -11,8 +11,8 @@ With 'ReMux' you have a very simple way to implement the following pattern
  * each store uses (manages) a portion of the application store
  * components receive a store as props (state of the component, like mapStateToProps with Redux)
  * components use the store in read only mode
+  *  the exception could be internal states that are not needed by all others components (form input)
  * components call actions creators to apply modifications to the store (a portion of the the application state)
-  *  the exception could be internal states that not needed by all others components (form)
  * actions creators dispatch informations to resolvers
  * resolvers resolve actions and call stores
  * stores update a portion of the application state
@@ -21,7 +21,7 @@ With 'ReMux' you have a very simple way to implement the following pattern
  * resolvers could be also middlewares to do something with the action before/after calling the stores
 * TRY IT, IT'S VERY SIMPLE THIS WAY
 
-In the example, the services are Mock : to test with real services use the REST services of this backend : https://github.com/vinej/react-portal-server
+In the example, the services are Mocked : to test with real services use the REST services of this backend : https://github.com/vinej/react-portal-server
 
 For a more complete example see: https://github.com/vinej/react-portal
 
