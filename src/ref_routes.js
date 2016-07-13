@@ -1,4 +1,3 @@
-import { browserHistory} from 'react-router'
 import { stateNavigator } from './navigation'
 
 export default class RefRoutes {

@@ -18,8 +18,7 @@
     "navigation": "^2.0.0",
     "navigation-react": "^2.0.2",
     "react": "^15.2.0",
-    "react-dom": "^15.2.0",
-    "react-router": "^2.4.1"
+    "react-dom": "^15.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.9.1",
