@@ -1,13 +1,15 @@
 import { dispatch } from '../resolvers/dispatcher'
 import AuthService from '../services/auth_service';
 
+export let authPrefixType = "auth_"
+
 export let authTypes = {
-  authSetAuthorizations   : 'auth_SetAuthorizations',
-  authSignIn              : 'auth_SignIn',
-  authSignUp              : 'auth_SignUp',
-  authSignOut             : 'auth_SignOut',
-  authCheckToken          : 'auth_CheckToken',
-  authError               : 'auth_Error'
+  authSetAuthorizations   : authPrefixType + 'SetAuthorizations',
+  authSignIn              : authPrefixType + 'SignIn',
+  authSignUp              : authPrefixType + 'SignUp',
+  authSignOut             : authPrefixType + 'SignOut',
+  authCheckToken          : authPrefixType + 'CheckToken',
+  authError               : authPrefixType + 'Error'
 }
 
 const t = authTypes

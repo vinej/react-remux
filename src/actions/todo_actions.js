@@ -2,12 +2,14 @@ import { dispatch } from '../resolvers/dispatcher'
 import TodoService from '../services/todo_service';
 
 // same name of the type is the name of the function, but with a underscore. The pattern need that
+export let todoPrefixType = 'todo_'
+
 export let todoTypes = {
-  todoAdd       : 'todo_Add',
-  todoDelete    : 'todo_Delete',
-  todoSetDesc   : 'todo_SetDesc',
-  todoSetDone   : 'todo_SetDone',
-  todoGetAll    : 'todo_GetAll'
+  todoAdd       : todoPrefixType + 'Add',
+  todoDelete    : todoPrefixType + 'Delete',
+  todoSetDesc   : todoPrefixType + 'SetDesc',
+  todoSetDone   : todoPrefixType + 'SetDone',
+  todoGetAll    : todoPrefixType + 'GetAll'
 }
 
 const t = todoTypes

@@ -20,5 +20,9 @@ export let appState = {
     @observable todos : [],
     @observable desc : '',
     count : 3
+  },
+  routes : {
+    @observable routes : [],
+    currentRoute : -1
   }
 }

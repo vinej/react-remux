@@ -1,7 +1,12 @@
 import { todoStore } from '../stores/todo_store'
-import { todoTypes  } from '../actions/todo_actions'
+import { todoTypes, todoPrefixType  } from '../actions/todo_actions'
 
 export default function(action, next) {
+
+  if (todoPrefixType !== action.prefixType) {
+    return next(null, action);
+  }
+
   const t = todoTypes
   switch(action.type) {
     case t.todoAdd :

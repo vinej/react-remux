@@ -3,6 +3,7 @@ import { loggerResolver }         from './logger_resolver';
 import authResolver               from './auth_resolver';
 import todoResolver               from './todo_resolver';
 import testResolver               from './test_resolver';
+import routeResolver               from './route_resolver';
 
 class Dispatcher {
   constructor() {
@@ -23,6 +24,7 @@ class Dispatcher {
   }
 
   dispatch(action) {
+    action.prefixType = action.type.substr(0, action.type.indexOf("_") + 1)
     for(let resolver of this.stdResolversAll) {
       action = resolver(action, this.next);
       if (!action) return;
@@ -39,6 +41,8 @@ dispatcher.addResolver( thunkResolver )
 dispatcher.addResolver( authResolver )
 
 // no special order functionnal resolvers
+dispatcher.addResolver( routeResolver )
+
 dispatcher.addResolver( todoResolver )
 
 // resolvers for testing purpose at the end

@@ -1,11 +1,12 @@
 import { browserHistory} from 'react-router'
+import { stateNavigator } from './navigation'
 
 export default class RefRoutes {
   static routeTodo() {
-    browserHistory.push('/todos')
+    stateNavigator.navigate('todos')
   }
 
   static routeSignIn() {
-    browserHistory.push('/signin')
+    stateNavigator.navigate('signin')
   }
 }

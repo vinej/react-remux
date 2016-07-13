@@ -1,6 +1,6 @@
 {
   "name": "remux",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,6 +15,8 @@
     "mobx": "^2.3.3",
     "mobx-react": "^3.3.4",
     "mobx-react-devtools": "^4.2.0",
+    "navigation": "^2.0.0",
+    "navigation-react": "^2.0.2",
     "react": "^15.2.0",
     "react-dom": "^15.2.0",
     "react-router": "^2.4.1"

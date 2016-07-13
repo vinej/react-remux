@@ -19,6 +19,7 @@ With 'ReMux' you have a very simple way to implement the following pattern
  * stores are observable with the Mobx @observable decorator
  * Mobx refresh the components with the @observer decorator
  * resolvers could be also middlewares to do something with the action before/after calling the stores
+ * the routing is also using the dispach pattern
 * TRY IT, IT'S VERY SIMPLE THIS WAY
 
 In the example, the services are Mocked : to test with real services use the REST services of this backend : https://github.com/vinej/react-portal-server

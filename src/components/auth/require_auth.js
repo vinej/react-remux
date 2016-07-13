@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default function(ComposedComponent, store) {
+export default function(ComposedComponent, store, stateNavigator) {
   class Authentication extends Component {
 
     static contextTypes = {
@@ -8,14 +8,14 @@ export default function(ComposedComponent, store) {
     }
 
     componentWillMount() {
-      if (!store.authenticated) {
-        this.context.router.push('/');
+      if (!store.isAuthenticated()) {
+        stateNavigator.navigate('signin');
       }
     }
 
     componentWillUpdate(nextProps) {
-      if (!store.authenticated) {
-        this.context.router.push('/');
+      if (!store.isAuthenticated()) {
+        stateNavigator.navigate('signin');
       }
     }
 
