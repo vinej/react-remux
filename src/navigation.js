@@ -14,11 +14,11 @@ import { authStore } from './stores/auth_store'
 import RouteActions from './actions/route_actions'
 
 export let stateNavigator = new StateNavigator([
-    {key: 'signin', route: 'signin', title: 'SignIn' },
-    {key: 'signout', route: 'signout', title: 'SignOut' },
-    {key: 'signup', route: 'signup', title: 'SignUp' },
-    {key: 'todos', route: 'todos', title: 'Todos' },
-    {key: 'welcome', route: '' }
+    {key: 'signin',   route: 'signin',  component: <SignIn store={ appState.signInUp } /> },
+    {key: 'signout',  route: 'signout', component: <SignOut /> },
+    {key: 'signup',   route: 'signup',  component: <SignUp store={ appState.signInUp } /> },
+    {key: 'todos',    route: 'todos',   component: <Todos store={ todoStore } /> },
+    {key: 'welcome',  route: '',        component : <Welcome /> }
 ]);
 
 stateNavigator.states.signin.navigating = function(data, url, navigate) {
@@ -29,68 +29,33 @@ stateNavigator.states.signin.navigating = function(data, url, navigate) {
   navigate()
 };
 
-const routeSignIn =   { id: 'signin', 
-                        component : () => <SignIn store={ appState.signInUp } />,
-                        display : 'block' 
-                      }
-stateNavigator.states.signin.navigated = function(data, url, navigate) {
-  RouteActions.routeAdd( routeSignIn )
-};
+stateNavigator.onNavigate((oldState, state, data) => {
+    console.log(oldState, state, data)
+    if (checkNavigating(state) === false) {
+      return
+    }
 
-stateNavigator.states.signup.navigating = function(data, url, navigate) {
-  if (authStore.isAuthenticated() == true) {
-    AuthActions.authSignOut()
+    RouteActions.routeAdd({
+        id: state.key,
+        component: () => state.component,
+        display: 'block'
+    });
+});
+
+function checkNavigating(state) {
+  if (state.key === 'signin' || state.key === 'signup' || state.key === 'signout') {
+    if (authStore.isAuthenticated() === true) {
+      AuthActions.authSignOut()
+      return true
+    }
   }
-  navigate()
-};
 
-const routeSignUp =  { id: 'signup', 
-                      component : () => <SignUp store={ appState.signInUp } />,
-                      display : 'block' 
-                    } 
-stateNavigator.states.signup.navigated = function(data, url, navigate) {
-  RouteActions.routeAdd( routeSignUp)
-};
-
-stateNavigator.states.signout.navigating = function(data, url, navigate) {
-  if (authStore.isAuthenticated() == true) {
-    AuthActions.authSignOut()
+  if (state.key === 'todos') {
+    if (authStore.isAuthenticated() === false) {
+      stateNavigator.navigate('signin')
+      return false
+    }
   }
-  navigate({data})
-};
+  return true
+}
 
-const routeSignOut =  { id: 'signout', 
-                        component : () => <SignOut />,
-                        display : 'block' 
-                      }
-stateNavigator.states.signout.navigated = function(data, url, navigate) {
-  RouteActions.routeAdd( routeSignOut )
-};
-
-stateNavigator.states.todos.navigating = function(data, url, navigate) {
-  if (authStore.isAuthenticated() == false) {
-    stateNavigator.navigate('signin')
-    return
-  }
-  navigate()
-};
-
-const routeTodo = { id: 'todos', 
-                  component : () => <Todos store={ todoStore } />,
-                  display : 'block' 
-                }
-stateNavigator.states.todos.navigated = function(data, url, navigate) {
-  RouteActions.routeAdd( routeTodo )
-};
-
-// stateNavigator.states.welcome.navigating = function(data, url, navigate) {
-//   navigate({data})
-//   AuthActions.authCheckToken(false)  
-// };
-const routeWelcome =  {  id: 'welcome', 
-                        component : () => <Welcome />,
-                        display : 'block' 
-                      }
-stateNavigator.states.welcome.navigated = function(data, url, navigate) {
-  RouteActions.routeAdd( routeWelcome )
-};
