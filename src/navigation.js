@@ -21,14 +21,6 @@ export let stateNavigator = new StateNavigator([
     {key: 'welcome',  route: '',        component : <Welcome /> }
 ]);
 
-stateNavigator.states.signin.navigating = function(data, url, navigate) {
-  console.log('signin navidating')
-  if (authStore.isAuthenticated() == true) {
-    AuthActions.authSignOut()
-  }
-  navigate()
-};
-
 stateNavigator.onNavigate((oldState, state, data) => {
     console.log(oldState, state, data)
     if (checkNavigating(state) === false) {
