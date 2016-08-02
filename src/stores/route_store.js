@@ -10,6 +10,7 @@ export default class RouteStore {
   add(route) {
     let routes = this.state.routes;
     const idx = routes.findIndex( (r) => r.id === route.id );
+    // new route
     if (idx === -1) {
       if (this.state.currentRoute !== -1) {
         routes[this.state.currentRoute].display = 'none'
@@ -17,6 +18,7 @@ export default class RouteStore {
       routes.push(route)
       this.state.currentRoute = routes.length - 1;
     } else {
+    // new route
       if (this.state.currentRoute !== -1) {
         routes[this.state.currentRoute].display = 'none'
       }

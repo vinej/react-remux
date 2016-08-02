@@ -12,7 +12,7 @@ const t = routeTypes
 export default class RouteActions {
   static routeAdd(route) {
     dispatch( {
-    	  type: t.routeAdd,
+    	type: t.routeAdd,
       	payload: route
       }
     )

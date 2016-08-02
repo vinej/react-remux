@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { observer } from "mobx-react"
 import AuthActions from '../../actions/auth_actions'
+import SignInUpActions from '../../actions/signinup_actions'
+import { dispatchSynchronousActions } from '../../resolvers/dispatcher'
 
 @observer
 export default class SignIn extends Component {
@@ -9,30 +11,29 @@ export default class SignIn extends Component {
     super(props)
     this.handleSend = this.handleSend.bind(this)
     this.validate = this.validate.bind(this)
+    this.submit = this.submit.bind(this)
   }
 
   handleSend(event) {
     const store = this.props.store
+    store.isError = false
     event.preventDefault()
-    if (this.validate() === true) {
+    this.validate(event)
+  }
+
+  submit() {
+    const store = this.props.store
+    if (store.isError === false) {
       AuthActions.authSignIn(store.email, store.password)      
     }
   }
 
-  validate() {
-    const store = this.props.store
-    store.error = ''
-    let isValidate = true
-    if ( store.email === '') {
-      store.error = 'Email is required'
-      isValidate = false
-    }
-
-    if ( store.password === '') {
-      store.error = store.error + (isValidate === false ?' : ' : '') + 'Password is required'
-      isValidate = false
-    }
-    return isValidate
+  validate(event) {
+    dispatchSynchronousActions( [
+      SignInUpActions._validateEmail,
+      SignInUpActions._validatePassword,
+      this.submit
+    ] );
   }
 
   render() {
@@ -45,16 +46,20 @@ export default class SignIn extends Component {
             <label required>Email</label>
             <input name="email" 
                    value={ store.email }
+                   onBlur = { SignInUpActions.validateEmail }
                    onChange={(e) => store.email = e.target.value}/>
           </div>
+          <div style={{ color : 'red'}}>{ store.emailError || '' }</div>
 
           <div>
             <label required>Password</label>
             <input name="password" 
                     type="password" 
                     value={ store.password }
+                    onBlur = { SignInUpActions.validatePassword }
                     onChange={(e) => store.password = e.target.value} />
           </div>
+          <div style={{ color : 'red'}}>{ store.passwordError || '' }</div>
           <div>
             <button className='pure-button' onClick={ this.handleSend }>SignIn</button>
           </div>

@@ -4,10 +4,15 @@ import { observable } from 'mobx'
 export let appState = {
   signInUp : {
     @observable email : '',
+    @observable emailError : '',
     @observable password : '',
+    @observable passwordError : '',
     @observable name : 'jyv',
+    @observable nameError : 'jyv',
     @observable confirmPassword : '',
-    @observable error : ''
+    @observable confirmPasswordError : '',
+    @observable error : '',
+    isError : false
   },
   user : {
     @observable name : '',
