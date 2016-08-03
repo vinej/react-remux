@@ -17,6 +17,7 @@ export default class SignIn extends Component {
   handleSend(event) {
     const store = this.props.store
     store.isError = false
+    store.isValidating = true
     event.preventDefault()
     this.validate(event)
   }
@@ -26,13 +27,14 @@ export default class SignIn extends Component {
     if (store.isError === false) {
       AuthActions.authSignIn(store.email, store.password)      
     }
+    store.isValidating = false
   }
 
   validate(event) {
     dispatchSynchronousActions( [
       SignInUpActions._validateEmail,
       SignInUpActions._validatePassword,
-      this.submit
+      () => this.submit
     ] );
   }
 
@@ -61,7 +63,7 @@ export default class SignIn extends Component {
           </div>
           <div style={{ color : 'red'}}>{ store.passwordError || '' }</div>
           <div>
-            <button className='pure-button' onClick={ this.handleSend }>SignIn</button>
+            <button disabled={ store.isValidating } className='pure-button' onClick={ this.handleSend }>SignIn</button>
           </div>
           <div style={{ color : 'red'}}>{ store.error || '' }</div>
         </fielset>

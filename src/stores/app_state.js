@@ -12,7 +12,8 @@ export let appState = {
     @observable confirmPassword : '',
     @observable confirmPasswordError : '',
     @observable error : '',
-    @observable isError : false
+    @observable isError : false,
+    @observable isValidating : false
   },
   user : {
     @observable name : '',

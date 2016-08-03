@@ -17,6 +17,7 @@ export default class SignUp extends Component {
   handleSend(event) {
     const store = this.props.store
     store.isError = false
+    store.isValidating = true
     event.preventDefault()
     this.validate(event)
   }
@@ -26,6 +27,7 @@ export default class SignUp extends Component {
     if (store.isError === false) {
       AuthActions.authSignIn(store.email, store.password)      
     }
+    store.isValidating = false
   }
 
   validate(event) {
@@ -34,7 +36,7 @@ export default class SignUp extends Component {
       SignInUpActions._validatePassword,
       SignInUpActions._validateConfirmPassword,
       SignInUpActions._validateName,
-      this.submit    
+      () => this.submit
     ] );
   }
 
@@ -81,7 +83,7 @@ export default class SignUp extends Component {
           </div>
           <div style={{ color : 'red'}}>{ store.nameError || '' }</div>
           <div>
-            <button className='pure-button' onClick={ this.handleSend }>SignUp</button>
+            <button disabled={ store.isValidating } className='pure-button' onClick={ this.handleSend }>SignUp</button>
           </div>
           <div style={{ color : 'red'}}>{ store.error || '' }</div>
         </fielset>
