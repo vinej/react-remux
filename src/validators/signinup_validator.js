@@ -1,7 +1,7 @@
 import { action } from 'mobx'
-import { appState } from './app_state'
+import { appState } from '../stores/app_state'
 
-export default class SignInUpStore {
+export default class SignInUpValidator {
   static next(action) {
     if (action.next != null) {
       action.next(action)
@@ -18,7 +18,7 @@ export default class SignInUpStore {
         state.emailError = 'Email is required'
         state.isError = true
       }
-      SignInUpStore.next(action)
+      SignInUpValidator.next(action)
     }, 100)
   }
 
@@ -30,7 +30,7 @@ export default class SignInUpStore {
       state.passwordError = 'Password is required'
       state.isError = true
     }
-    SignInUpStore.next(action)
+    SignInUpValidator.next(action)
   }
 
   @action
@@ -46,7 +46,7 @@ export default class SignInUpStore {
       state.confirmPasswordError = 'Both passwords are not equal'
       state.isError = true
     }
-    SignInUpStore.next(action)
+    SignInUpValidator.next(action)
   }
 
   @action
@@ -57,7 +57,7 @@ export default class SignInUpStore {
       state.nameError = 'Name is required'
       state.isError = true
     }
-    SignInUpStore.next(action)
+    SignInUpValidator.next(action)
   }
 }
-export let signInUpStore = new SignInUpStore()
+export let signInUpValidator = new SignInUpValidator()

@@ -1,4 +1,4 @@
-import { signInUpStore } from '../stores/signinup_store'
+import { signInUpValidator } from '../validators/signinup_validator'
 import { signInUpTypes, signInUpPrefixType  } from '../actions/signinup_actions'
 
 export default function(action, next) {
@@ -10,16 +10,16 @@ export default function(action, next) {
   const t = signInUpTypes
   switch(action.type) {
     case t.signInUpValidateEmail:
-      signInUpStore.validateEmail(action)
+      signInUpValidator.validateEmail(action)
       break;
     case t.signInUpValidatePassword:
-      signInUpStore.validatePassword(action)
+      signInUpValidator.validatePassword(action)
       break;
     case t.signInUpValidateConfirmPassword:
-      signInUpStore.validateConfirmPassword(action)
+      signInUpValidator.validateConfirmPassword(action)
       break;
     case t.signInUpValidateName:
-      signInUpStore.validateName(action)
+      signInUpValidator.validateName(action)
       break;
   }
   return next(null, action);

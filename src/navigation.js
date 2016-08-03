@@ -22,7 +22,6 @@ export let stateNavigator = new StateNavigator([
 ]);
 
 stateNavigator.onNavigate((oldState, state, data) => {
-    console.log(oldState, state, data)
     if (checkNavigating(state) === false) {
       return
     }
