@@ -7,12 +7,20 @@ export let signInUpTypes = {
   signInUpValidatePassword          : signInUpPrefixType + 'Password',
   signInUpValidateConfirmPassword   : signInUpPrefixType + 'ConfirmPassword',
   signInUpValidateName              : signInUpPrefixType + 'Name',
+  signInUpInit                      : signInUpPrefixType + 'Init'
 }
 
 const t = signInUpTypes
 
 // must use static method to pass them as callback
 export default class signInUpActions {
+  static init() {
+    dispatch( {
+        type: t.signInUpInit
+      }
+    )  
+  }
+
   static validateEmail() {
     dispatch( signInUpActions._validateEmail() )
   }

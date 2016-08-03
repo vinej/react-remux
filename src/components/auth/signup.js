@@ -14,6 +14,7 @@ export default class SignUp extends Component {
     this.handleSend = this.handleSend.bind(this)
     this.validate = this.validate.bind(this)
     this.submit = this.submit.bind(this)
+    SignInUpActions.init()
   }
 
   handleSend(event) {

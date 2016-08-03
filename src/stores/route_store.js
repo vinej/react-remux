@@ -8,6 +8,7 @@ export default class RouteStore {
 
   @action
   add(route) {
+    console.log('route', route)
     let routes = this.state.routes;
     const idx = routes.findIndex( (r) => r.id === route.id );
     // new route
@@ -17,6 +18,9 @@ export default class RouteStore {
       }
       routes.push(route)
       this.state.currentRoute = routes.length - 1;
+      if (route.init != null) {
+        route.init()
+      }
     } else {
     // new route
       if (this.state.currentRoute !== -1) {
@@ -24,6 +28,9 @@ export default class RouteStore {
       }
       this.state.currentRoute = idx
       routes[idx].display = 'block'
+      if (route.init != null) {
+        route.init()
+      }
     }
   }
 }

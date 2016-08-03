@@ -9,6 +9,9 @@ export default function(action, next) {
 
   const t = signInUpTypes
   switch(action.type) {
+    case t.signInUpInit:
+      signInUpValidator.init(action)
+      break;
     case t.signInUpValidateEmail:
       signInUpValidator.validateEmail(action)
       break;

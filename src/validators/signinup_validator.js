@@ -9,6 +9,21 @@ export default class SignInUpValidator {
   }
 
   @action
+  init(action) {
+    const state = appState.signInUp
+    //state.email = '';
+    state.emailError = '';
+    state.password = '';
+    state.passwordError = '';
+    //state.name = '';
+    state.nameError = '';
+    state.confirmPassword = '';
+    state.confirmPasswordError = '';
+    state.error = '';
+    state.isError = false;
+  }
+
+  @action
   validateEmail(action) {
     // simulate a called to the backend.
     setTimeout( function() {

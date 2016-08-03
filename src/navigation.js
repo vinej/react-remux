@@ -12,13 +12,14 @@ import { StateNavigator } from 'navigation'
 import { appState } from './stores/app_state'
 import { authStore } from './stores/auth_store'
 import RouteActions from './actions/route_actions'
+import SignInUpActions from './actions/signinup_actions'
 
 export let stateNavigator = new StateNavigator([
-    {key: 'signin',   route: 'signin',  component: <SignIn vstate={ appState.signInUp } /> },
-    {key: 'signout',  route: 'signout', component: <SignOut /> },
-    {key: 'signup',   route: 'signup',  component: <SignUp vstate={ appState.signInUp } /> },
-    {key: 'todos',    route: 'todos',   component: <Todos store={ todoStore } /> },
-    {key: 'welcome',  route: '',        component : <Welcome /> }
+    {key: 'signin',   route: 'signin',  init: SignInUpActions.init , component: <SignIn vstate={ appState.signInUp } /> },
+    {key: 'signout',  route: 'signout', init: null ,component: <SignOut /> },
+    {key: 'signup',   route: 'signup',  init: SignInUpActions.init, component: <SignUp vstate={ appState.signInUp } /> },
+    {key: 'todos',    route: 'todos',   init: null, component: <Todos store={ todoStore } /> },
+    {key: 'welcome',  route: '',        init: null, component : <Welcome /> }
 ]);
 
 stateNavigator.onNavigate((oldState, state, data) => {
@@ -29,7 +30,8 @@ stateNavigator.onNavigate((oldState, state, data) => {
     RouteActions.routeAdd({
         id: state.key,
         component: () => state.component,
-        display: 'block'
+        display: 'block',
+        init: state.init
     });
 });
 
