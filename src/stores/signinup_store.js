@@ -19,7 +19,7 @@ export default class SignInUpStore {
         state.isError = true
       }
       SignInUpStore.next(action)
-    }, 2000)
+    }, 100)
   }
 
   @action
