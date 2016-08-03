@@ -13,7 +13,7 @@ class ParallelAction {
     this._next = next
   }
 
-  isDone() {
+  isAllDone() {
     this._count = this._count - 1
     return this._count === 0
   }
@@ -86,7 +86,7 @@ class Dispatcher {
   }
 
   dispatchParalleNext(action) {
-    if (action.parallelAction.isDone()) {
+    if (action.parallelAction.isAllDone()) {
       action.parallelAction.next()
     }
   }

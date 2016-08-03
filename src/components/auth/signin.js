@@ -3,6 +3,8 @@ import { observer } from "mobx-react"
 import AuthActions from '../../actions/auth_actions'
 import SignInUpActions from '../../actions/signinup_actions'
 import { dispatchParallelActions } from '../../resolvers/dispatcher'
+import Wait from '../wait'
+import { appState } from '../../stores/app_state'
 
 @observer
 export default class SignIn extends Component {
@@ -16,15 +18,15 @@ export default class SignIn extends Component {
 
   handleSend(event) {
     const vstate = this.props.vstate
+    appState.wait.isWaiting = true
     vstate.isError = false
-    vstate.isValidating = true
     event.preventDefault()
     this.validate(event)
   }
 
   submit() {
     const vstate = this.props.vstate
-    vstate.isValidating = false
+    appState.wait.isWaiting = false
     if (vstate.isError === false) {
       AuthActions.authSignIn(vstate.email, vstate.password)      
     }
@@ -41,6 +43,7 @@ export default class SignIn extends Component {
     const vstate = this.props.vstate
     return (
       <form className='pure-form pure-form pure-form-stacked'>
+        <Wait></Wait>
         <fielset>
           <legend>SignIn</legend>
           <div className='pure-control'>
@@ -62,7 +65,7 @@ export default class SignIn extends Component {
           </div>
           <div style={{ color : 'red'}}>{ vstate.passwordError || '' }</div>
           <div>
-            <button disabled={ vstate.isValidating } className='pure-button' onClick={ this.handleSend }>SignIn</button>
+            <button className='pure-button' onClick={ this.handleSend }>SignIn</button>
           </div>
           <div style={{ color : 'red'}}>{ vstate.error || '' }</div>
         </fielset>

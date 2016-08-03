@@ -38,3 +38,32 @@ a {
   margin-right: 4px;
   text-decoration: none;
 }
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: azure;
+  z-index:1;
+  opacity: 0.1;
+  -ms-filter: "alpha (opacity=10)";
+  filter: alpha (opacity=10);
+}
+
+.waiting {
+  text-align: center;
+  z-index: 100;
+  border: 1px solid black;
+  background-color: #1A6195;
+  color: white;
+  margin-left: -80px;
+  width: 180px;
+  height: 20px;
+  position: fixed;
+  left: 50%;
+  top:40%;
+  font-family: Verdana, sans-serif !important;
+  font-size: 14px;
+}

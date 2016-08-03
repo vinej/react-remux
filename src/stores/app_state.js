@@ -30,5 +30,8 @@ export let appState = {
   routes : {
     @observable routes : [],
     currentRoute : -1
+  },
+  wait: {
+    @observable isWaiting : false
   }
 }
