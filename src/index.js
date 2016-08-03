@@ -8,6 +8,7 @@ import App from './components/app'
 
 import { stateNavigator } from './navigation'
 
+require("./helpers/prototype.js")
 require('./style.css')
 
 // mock the services to do some tests

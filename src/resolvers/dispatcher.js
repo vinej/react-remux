@@ -25,9 +25,9 @@ class Dispatcher {
   }
 
   dispatch(action) {
-    console.log('action', action)
     action.prefixType = action.type.substr(0, action.type.indexOf("_") + 1)
-    for(let resolver of this.stdResolversAll) {
+    var i = 0
+      const resolver = this.stdResolversAll[i]
       action = resolver(action, this.next);
       if (!action) return;
     }    
