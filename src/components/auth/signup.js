@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { observer } from "mobx-react"
 import AuthActions from '../../actions/auth_actions'
 import SignInUpActions from '../../actions/signinup_actions'
-import { dispatchSynchronousActions } from '../../resolvers/dispatcher'
+import { dispatchParallelActions } from '../../resolvers/dispatcher'
 
 @observer
 export default class SignUp extends Component {
@@ -31,13 +31,13 @@ export default class SignUp extends Component {
   }
 
   validate(event) {
-    dispatchSynchronousActions( [
+    dispatchParallelActions( [
       SignInUpActions._validateEmail,
       SignInUpActions._validatePassword,
       SignInUpActions._validateConfirmPassword,
-      SignInUpActions._validateName,
-      () => this.submit
-    ] );
+      SignInUpActions._validateName ],
+      this.submit
+    );
   }
 
   render() {

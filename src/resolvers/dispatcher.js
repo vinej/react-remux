@@ -6,6 +6,27 @@ import testResolver               from './test_resolver';
 import routeResolver              from './route_resolver';
 import signInUpResolver           from './signinup_resolver';
 
+
+class ParallelAction {
+  constructor(count, next) {
+    this._count = count
+    this._next = next
+  }
+
+  isDone() {
+    this._count = this._count - 1
+    return this._count === 0
+  }
+
+  get next() {
+    return this._next
+  }
+ 
+  set next(value){
+    this._next = value
+  }
+}
+
 class Dispatcher {
   constructor() {
     this.stdResolversAll = []
@@ -63,6 +84,23 @@ class Dispatcher {
       dispatch(action)
     }
   }
+
+  dispatchParalleNext(action) {
+    if (action.parallelAction.isDone()) {
+      action.parallelAction.next()
+    }
+  }
+
+  dispatchParallelActions(actionList, next) {
+    var parallelAction = new ParallelAction(actionList.length, next)
+    var i = 0
+    for(i = 0; i < actionList.length ; i++) {
+      let action = actionList[i]()
+      action.parallelAction = parallelAction
+      action.next = dispatchParalleNext
+      dispatch(action)
+    }
+  }
 }
 
 export let dispatcher = new Dispatcher();
@@ -84,5 +122,7 @@ dispatcher.addResolver( signInUpResolver )
 dispatcher.addResolver( testResolver )
 
 export const dispatch = dispatcher.dispatch.bind(dispatcher)
+export const dispatchParalleNext = dispatcher.dispatchParalleNext.bind(dispatcher)
 export const dispatchNext = dispatcher.dispatchNext.bind(dispatcher)
 export const dispatchSynchronousActions = dispatcher.dispatchSynchronousActions.bind(dispatcher)
+export const dispatchParallelActions = dispatcher.dispatchParallelActions.bind(dispatcher)
