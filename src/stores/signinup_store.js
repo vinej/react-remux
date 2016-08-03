@@ -1,4 +1,4 @@
- import { action } from 'mobx'
+import { action } from 'mobx'
 import { appState } from './app_state'
 
 export default class SignInUpStore {

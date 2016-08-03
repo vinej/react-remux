@@ -24,10 +24,10 @@ export default class SignUp extends Component {
 
   submit() {
     const store = this.props.store
+    store.isValidating = false
     if (store.isError === false) {
       AuthActions.authSignIn(store.email, store.password)      
     }
-    store.isValidating = false
   }
 
   validate(event) {
