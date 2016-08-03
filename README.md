@@ -8,7 +8,7 @@ The boilerplate give you a minimum example to use Mobx with the ES6 syntax and t
 With 'ReMux' you have a very simple way to implement the following pattern
 * component => action => resolver => store => component
  * The application state is shared by all stores
- * each store uses (manages) a portion of the application store
+ * each store uses (manages) a portion of the application state
  * components receive a store as props (state of the component, like mapStateToProps with Redux)
  * components use the store in read only mode
    *  the exception is the internal states that are not needed by all others components (form inputs use a vstate in write mode)
