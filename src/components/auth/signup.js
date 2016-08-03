@@ -15,18 +15,18 @@ export default class SignUp extends Component {
   }
 
   handleSend(event) {
-    const store = this.props.store
-    store.isError = false
-    store.isValidating = true
+    const vstate = this.props.vstate
+    vstate.isError = false
+    vstate.isValidating = true
     event.preventDefault()
     this.validate(event)
   }
 
   submit() {
-    const store = this.props.store
-    store.isValidating = false
-    if (store.isError === false) {
-      AuthActions.authSignIn(store.email, store.password)      
+    const vstate = this.props.vstate
+    vstate.isValidating = false
+    if (vstate.isError === false) {
+      AuthActions.authSignIn(vstate.email, vstate.password)      
     }
   }
 
@@ -41,7 +41,7 @@ export default class SignUp extends Component {
   }
 
   render() {
-    const store = this.props.store
+    const vstate = this.props.vstate
     return (
       <form className='pure-form pure-form pure-form-stacked'>
         <fielset>
@@ -49,43 +49,43 @@ export default class SignUp extends Component {
           <div>
             <label required>Email</label>
             <input name="email" 
-                   value={ store.email }
+                   value={ vstate.email }
                    onBlur = { SignInUpActions.validateEmail }
-                   onChange={(e) => store.email = e.target.value}/>
+                   onChange={(e) => vstate.email = e.target.value}/>
           </div>
-          <div style={{ color : 'red'}}>{ store.emailError || '' }</div>
+          <div style={{ color : 'red'}}>{ vstate.emailError || '' }</div>
 
           <div>
             <label required>Password</label>
             <input name="password" 
                     type="password" 
-                    value={ store.password }
+                    value={ vstate.password }
                     onBlur = { SignInUpActions.validatePassword }
-                    onChange={(e) => store.password = e.target.value} />
+                    onChange={(e) => vstate.password = e.target.value} />
           </div>
-          <div style={{ color : 'red'}}>{ store.passwordError || '' }</div>
+          <div style={{ color : 'red'}}>{ vstate.passwordError || '' }</div>
           <div>
             <label required>Password Confirm</label>
             <input name="passwordConfirm" 
                     type="password" 
-                    value={ store.confirmPassword }
+                    value={ vstate.confirmPassword }
                     onBlur = { SignInUpActions.validateConfirmPassword }
-                    onChange={(e) => store.confirmPassword = e.target.value} />
+                    onChange={(e) => vstate.confirmPassword = e.target.value} />
           </div>
-          <div style={{ color : 'red'}}>{ store.confirmPasswordError || '' }</div>
+          <div style={{ color : 'red'}}>{ vstate.confirmPasswordError || '' }</div>
           <div>
             <label required>Name</label>
             <input name="name" 
                     type="text" 
-                    value={store.name}
+                    value={vstate.name}
                     onBlur = { SignInUpActions.validateName }
-                    onChange={(e) => store.name = e.target.value} />
+                    onChange={(e) => vstate.name = e.target.value} />
           </div>
-          <div style={{ color : 'red'}}>{ store.nameError || '' }</div>
+          <div style={{ color : 'red'}}>{ vstate.nameError || '' }</div>
           <div>
-            <button disabled={ store.isValidating } className='pure-button' onClick={ this.handleSend }>SignUp</button>
+            <button disabled={ vstate.isValidating } className='pure-button' onClick={ this.handleSend }>SignUp</button>
           </div>
-          <div style={{ color : 'red'}}>{ store.error || '' }</div>
+          <div style={{ color : 'red'}}>{ vstate.error || '' }</div>
         </fielset>
       </form>
     )

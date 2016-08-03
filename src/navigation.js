@@ -14,9 +14,9 @@ import { authStore } from './stores/auth_store'
 import RouteActions from './actions/route_actions'
 
 export let stateNavigator = new StateNavigator([
-    {key: 'signin',   route: 'signin',  component: <SignIn store={ appState.signInUp } /> },
+    {key: 'signin',   route: 'signin',  component: <SignIn vstate={ appState.signInUp } /> },
     {key: 'signout',  route: 'signout', component: <SignOut /> },
-    {key: 'signup',   route: 'signup',  component: <SignUp store={ appState.signInUp } /> },
+    {key: 'signup',   route: 'signup',  component: <SignUp vstate={ appState.signInUp } /> },
     {key: 'todos',    route: 'todos',   component: <Todos store={ todoStore } /> },
     {key: 'welcome',  route: '',        component : <Welcome /> }
 ]);

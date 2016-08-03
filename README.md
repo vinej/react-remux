@@ -11,15 +11,15 @@ With 'ReMux' you have a very simple way to implement the following pattern
  * each store uses (manages) a portion of the application store
  * components receive a store as props (state of the component, like mapStateToProps with Redux)
  * components use the store in read only mode
-   *  the exception could be internal states that are not needed by all others components (form input)
- * components call actions creators to apply modifications to the store (a portion of the the application state)
+   *  the exception could be internal states that are not needed by all others components (form inputs use a vstate in write mode)
+  * components call actions creators to apply modifications to the store (a portion of the the application state)
  * actions creators dispatch informations to resolvers
  * resolvers resolve actions and call stores
  * stores update a portion of the application state
  * stores are observable with the Mobx @observable decorator
  * Mobx refresh the components with the @observer decorator
  * resolvers could be also middlewares to do something with the action before/after calling the stores
- * the routing is also using the dispach pattern
+ * the routing and the form **validators** are also using the dispatch pattern
 * TRY IT, IT'S VERY SIMPLE THIS WAY
 
 In the example, the services are Mocked : to test with real services use the REST services of this backend : https://github.com/vinej/react-portal-server
