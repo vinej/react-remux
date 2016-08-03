@@ -10,16 +10,16 @@ export default function(action, next) {
   const t = signInUpTypes
   switch(action.type) {
     case t.signInUpValidateEmail:
-      signInUpStore.validateEmail()
+      signInUpStore.validateEmail(action)
       break;
     case t.signInUpValidatePassword:
-      signInUpStore.validatePassword()
+      signInUpStore.validatePassword(action)
       break;
     case t.signInUpValidateConfirmPassword:
-      signInUpStore.validatePassword()
+      signInUpStore.validateConfirmPassword(action)
       break;
     case t.signInUpValidateName:
-      signInUpStore.validateName()
+      signInUpStore.validateName(action)
       break;
   }
   return next(null, action);

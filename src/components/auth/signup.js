@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { observer } from "mobx-react"
 import AuthActions from '../../actions/auth_actions'
+import SignInUpActions from '../../actions/signinup_actions'
+import { dispatchSynchronousActions } from '../../resolvers/dispatcher'
 
 @observer
 export default class SignUp extends Component {
@@ -9,41 +11,31 @@ export default class SignUp extends Component {
     super(props)
     this.handleSend = this.handleSend.bind(this)
     this.validate = this.validate.bind(this)
+    this.submit = this.submit.bind(this)
   }
 
   handleSend(event) {
     const store = this.props.store
+    store.isError = false
     event.preventDefault()
-    if (this.validate() === true) {
-      AuthActions.authSignUp(store.email, store.password, store.name)      
+    this.validate(event)
+  }
+
+  submit() {
+    const store = this.props.store
+    if (store.isError === false) {
+      AuthActions.authSignIn(store.email, store.password)      
     }
   }
 
-  validate() {
-    const store = this.props.store
-    store.error = ''
-    let isValidate = true
-    if ( store.email === '') {
-      store.error = 'Email is required!'
-      isValidate = false
-    }
-    if ( store.password === '') {
-      store.error = store.state + (isValidate === false ?' : ' : '') + 'Password is required!'
-      isValidate = false
-    }
-    if ( store.confirmPassword === '') {
-      store.error = store.error + (isValidate === false ?' : ' : '') + 'Password confirm is required!'
-      isValidate = false
-    }
-    if ( store.password !== store.confirmPassword) {
-      store.error = store.error + (isValidate === false ?' : ' : '') + 'Both password are not equal!'
-      isValidate = false
-    }
-    if ( store.name === '') {
-      store.error = store.error + (isValidate === false ?' : ' : '') + 'Name is required!'
-      isValidate = false
-    }
-    return isValidate
+  validate(event) {
+    dispatchSynchronousActions( [
+      SignInUpActions._validateEmail,
+      SignInUpActions._validatePassword,
+      SignInUpActions._validateConfirmPassword,
+      SignInUpActions._validateName,
+      this.submit    
+    ] );
   }
 
   render() {
@@ -56,30 +48,38 @@ export default class SignUp extends Component {
             <label required>Email</label>
             <input name="email" 
                    value={ store.email }
+                   onBlur = { SignInUpActions.validateEmail }
                    onChange={(e) => store.email = e.target.value}/>
           </div>
+          <div style={{ color : 'red'}}>{ store.emailError || '' }</div>
 
           <div>
             <label required>Password</label>
             <input name="password" 
                     type="password" 
                     value={ store.password }
+                    onBlur = { SignInUpActions.validatePassword }
                     onChange={(e) => store.password = e.target.value} />
           </div>
+          <div style={{ color : 'red'}}>{ store.passwordError || '' }</div>
           <div>
             <label required>Password Confirm</label>
             <input name="passwordConfirm" 
                     type="password" 
                     value={ store.confirmPassword }
+                    onBlur = { SignInUpActions.validateConfirmPassword }
                     onChange={(e) => store.confirmPassword = e.target.value} />
           </div>
+          <div style={{ color : 'red'}}>{ store.confirmPasswordError || '' }</div>
           <div>
             <label required>Name</label>
             <input name="name" 
                     type="text" 
                     value={store.name}
+                    onBlur = { SignInUpActions.validateName }
                     onChange={(e) => store.name = e.target.value} />
           </div>
+          <div style={{ color : 'red'}}>{ store.nameError || '' }</div>
           <div>
             <button className='pure-button' onClick={ this.handleSend }>SignUp</button>
           </div>

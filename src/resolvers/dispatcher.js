@@ -5,7 +5,6 @@ import todoResolver               from './todo_resolver';
 import testResolver               from './test_resolver';
 import routeResolver              from './route_resolver';
 import signInUpResolver           from './signinup_resolver';
-import validateResolver           from './validate_resolver';
 
 class Dispatcher {
   constructor() {
@@ -34,11 +33,32 @@ class Dispatcher {
     }    
   }
 
+  dispatchNext(action) {
+    action.min = action.min + 1
+    if (action.min < action.max) {
+      let nextAction = action.list[action.min]()
+
+      if (typeof nextAction === 'function') {
+        nextAction()
+      } else {
+        nextAction.min = action.min
+        nextAction.max = action.max
+        nextAction.list = action.list
+        nextAction.next = dispatchNext
+        dispatch(nextAction)
+      }
+    }
+  }
+
   dispatchSynchronousActions(actionList) {
-    for(var i = 0; i < actionList.length - 1; i++) {
-      let action = actionList[i]()
-      action.next = actionList[i + 1]
-      console.log('action', action)
+    let action = actionList[0]()
+    if (typeof action === 'function') {
+      action()
+    } else {
+      action.min = 0
+      action.max = actionList.length
+      action.list = actionList
+      action.next = dispatchNext
       dispatch(action)
     }
   }
@@ -59,11 +79,9 @@ dispatcher.addResolver( todoResolver )
 
 dispatcher.addResolver( signInUpResolver )
 
-// resolvers for validating at the end, before the test
-dispatcher.addResolver( validateResolver )
-
 // resolvers for testing purpose at the end
 dispatcher.addResolver( testResolver )
 
 export const dispatch = dispatcher.dispatch.bind(dispatcher)
+export const dispatchNext = dispatcher.dispatchNext.bind(dispatcher)
 export const dispatchSynchronousActions = dispatcher.dispatchSynchronousActions.bind(dispatcher)

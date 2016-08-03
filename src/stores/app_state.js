@@ -7,12 +7,12 @@ export let appState = {
     @observable emailError : '',
     @observable password : '',
     @observable passwordError : '',
-    @observable name : 'jyv',
-    @observable nameError : 'jyv',
+    @observable name : '',
+    @observable nameError : '',
     @observable confirmPassword : '',
     @observable confirmPasswordError : '',
     @observable error : '',
-    isError : false
+    @observable isError : false
   },
   user : {
     @observable name : '',
