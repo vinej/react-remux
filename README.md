@@ -11,7 +11,7 @@ With 'ReMux' you have a very simple way to implement the following pattern
  * each store uses (manages) a portion of the application state
  * components receive a store as props (state of the component, like mapStateToProps with Redux)
  * components use the store in read only mode
-   *  the exception is the internal states that are not needed by all others components (form inputs use a vstate in write mode)
+   *  the exception are the internal states that are not needed by all others components (form inputs use a vstate in write mode)
   * components call actions creators to apply modifications to the store (a portion of the the application state)
  * actions creators dispatch informations to resolvers
  * resolvers resolve actions and call stores
