@@ -4,6 +4,7 @@ import authResolver               from './auth_resolver';
 import todoResolver               from './todo_resolver';
 import testResolver               from './test_resolver';
 import routeResolver              from './route_resolver';
+import remuxResolver              from './remux_resolver';
 import signInUpResolver           from './signinup_resolver';
 
 
@@ -106,16 +107,22 @@ class Dispatcher {
 export let dispatcher = new Dispatcher();
 // logger first
 dispatcher.addResolver( loggerResolver )
-// second second
+
+// event remux system
+dispatcher.addResolver( remuxResolver )
+
+// thunk for services
 dispatcher.addResolver( thunkResolver )
 
+// authentification
 dispatcher.addResolver( authResolver )
 
-// no special order functionnal resolvers
+// no special order for functionnal resolvers
 dispatcher.addResolver( routeResolver )
 
 dispatcher.addResolver( todoResolver )
 
+// form resolvers
 dispatcher.addResolver( signInUpResolver )
 
 // resolvers for testing purpose at the end

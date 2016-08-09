@@ -38,6 +38,13 @@ export default class TodoStore {
   }
 
   @action
+  init() {
+    this.state.todos = []
+    this.desc = ''
+    this.count = 0
+  }
+
+  @action
   add() {
     if (this.state.desc === '') return
     this.state.todos.push( { id: this.state.count, desc: this.state.desc, done: false} );

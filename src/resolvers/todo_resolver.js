@@ -1,9 +1,16 @@
 import { todoStore } from '../stores/todo_store'
 import { todoTypes, todoPrefixType  } from '../actions/todo_actions'
+import { authTypes  } from '../actions/auth_actions'
 
 export default function(action, next) {
 
-  if (todoPrefixType !== action.prefixType) {
+  if (  todoPrefixType !== action.prefixType && 
+        action.type != authTypes.authSignOut ) {
+    return next(null, action);
+  }
+
+  if (action.type == authTypes.authSignOut) {
+    todoStore.init()
     return next(null, action);
   }
 

@@ -30,7 +30,7 @@ export let appState = {
     @observable routes : [],
     currentRoute : -1
   },
-  wait: {
+  remux: {
     @observable isWaiting : false
   }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { observer } from "mobx-react"
 import AuthActions from '../../actions/auth_actions'
+import RemuxActions from '../../actions/remux_actions'
 import SignInUpActions from '../../actions/signinup_actions'
 import { dispatchParallelActions } from '../../resolvers/dispatcher'
 import Wait from '../wait'
@@ -19,7 +20,7 @@ export default class SignIn extends Component {
 
   handleSend(event) {
     const vstate = this.props.vstate
-    appState.wait.isWaiting = true
+    RemuxActions.remuxWait(true)
     vstate.isError = false
     event.preventDefault()
     this.validate(event)
@@ -27,7 +28,7 @@ export default class SignIn extends Component {
 
   submit() {
     const vstate = this.props.vstate
-    appState.wait.isWaiting = false
+    RemuxActions.remuxWait(false)
     if (vstate.isError === false) {
       AuthActions.authSignIn(vstate.email, vstate.password)      
     }
