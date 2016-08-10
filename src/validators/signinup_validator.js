@@ -12,13 +12,13 @@ export default class SignInUpValidator {
   init(action) {
     const state = appState.signInUp
     //state.email = '';
-    state.emailError = '';
-    state.password = '';
-    state.passwordError = '';
+    state.email.error = '';
+    state.password.value = '';
+    state.password.error = '';
     //state.name = '';
-    state.nameError = '';
-    state.confirmPassword = '';
-    state.confirmPasswordError = '';
+    state.name.error = '';
+    state.confirmPassword.value = '';
+    state.confirmPassword.error = '';
     state.error = '';
     state.isError = false;
   }
@@ -28,9 +28,9 @@ export default class SignInUpValidator {
     // simulate a called to the backend.
     setTimeout( function() {
       const state = appState.signInUp
-      state.emailError = ''
-      if ( state.email === '') {
-        state.emailError = 'Email is required'
+      state.email.error = ''
+      if ( state.email.value === '') {
+        state.email.error = 'Email is required'
         state.isError = true
       }
       SignInUpValidator.next(action)
@@ -40,9 +40,9 @@ export default class SignInUpValidator {
   @action
   validatePassword(action) {
     const state = appState.signInUp
-    state.passwordError = ''
-    if ( state.password === '') {
-      state.passwordError = 'Password is required'
+    state.password.error = ''
+    if ( state.password.value === '') {
+      state.password.error = 'Password is required'
       state.isError = true
     }
     SignInUpValidator.next(action)
@@ -51,14 +51,14 @@ export default class SignInUpValidator {
   @action
   validateConfirmPassword(action) {
     const state = appState.signInUp
-    state.confirmPasswordError = ''
-    if ( state.confirmPassword === '') {
-      state.confirmPasswordError = 'ConfirmPassword is required'
+    state.confirmPassword.error = ''
+    if ( state.confirmPassword.value === '') {
+      state.confirmPassword.error = 'ConfirmPassword is required'
       state.isError = true
     }
 
-    if (state.password != state.confirmPassword) {
-      state.confirmPasswordError = 'Both passwords are not equal'
+    if (state.password.value != state.confirmPassword.value) {
+      state.confirmPassword.error = 'Both passwords are not equal'
       state.isError = true
     }
     SignInUpValidator.next(action)
@@ -67,9 +67,9 @@ export default class SignInUpValidator {
   @action
   validateName(action) {
     const state = appState.signInUp
-    state.nameError = ''
-    if ( state.name === '') {
-      state.nameError = 'Name is required'
+    state.name.error = ''
+    if ( state.name.value === '') {
+      state.name.error = 'Name is required'
       state.isError = true
     }
     SignInUpValidator.next(action)

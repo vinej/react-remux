@@ -54,41 +54,41 @@ export default class SignUp extends Component {
           <div>
             <label required>Email</label>
             <input name="email" 
-                   value={ vstate.email }
+                   value={ vstate.email.value }
                    onBlur = { SignInUpActions.validateEmail }
-                   onChange={(e) => vstate.email = e.target.value}/>
+                   onChange={(e) => vstate.email.value = e.target.value}/>
           </div>
-          <div style={{ color : 'red'}}>{ vstate.emailError || '' }</div>
+          <div style={{ color : 'red'}}>{ vstate.email.error || '' }</div>
 
           <div>
             <label required>Password</label>
             <input name="password" 
                     type="password" 
-                    value={ vstate.password }
+                    value={ vstate.password.value }
                     onBlur = { SignInUpActions.validatePassword }
-                    onChange={(e) => vstate.password = e.target.value} />
+                    onChange={(e) => vstate.password.value = e.target.value} />
           </div>
-          <div style={{ color : 'red'}}>{ vstate.passwordError || '' }</div>
+          <div style={{ color : 'red'}}>{ vstate.password.error || '' }</div>
           <div>
             <label required>Password Confirm</label>
             <input name="passwordConfirm" 
                     type="password" 
-                    value={ vstate.confirmPassword }
+                    value={ vstate.confirmPassword.value }
                     onBlur = { SignInUpActions.validateConfirmPassword }
-                    onChange={(e) => vstate.confirmPassword = e.target.value} />
+                    onChange={(e) => vstate.confirmPassword.value = e.target.value} />
           </div>
-          <div style={{ color : 'red'}}>{ vstate.confirmPasswordError || '' }</div>
+          <div style={{ color : 'red'}}>{ vstate.confirmPassword.error || '' }</div>
           <div>
             <label required>Name</label>
             <input name="name" 
                     type="text" 
-                    value={vstate.name}
+                    value={vstate.name.value}
                     onBlur = { SignInUpActions.validateName }
-                    onChange={(e) => vstate.name = e.target.value} />
+                    onChange={(e) => vstate.name.value = e.target.value} />
           </div>
-          <div style={{ color : 'red'}}>{ vstate.nameError || '' }</div>
+          <div style={{ color : 'red'}}>{ vstate.name.error || '' }</div>
           <div>
-            <button disabled={ vstate.isValidating } className='pure-button' onClick={ this.handleSend }>SignUp</button>
+            <button className='pure-button' onClick={ this.handleSend }>SignUp</button>
           </div>
           <div style={{ color : 'red'}}>{ vstate.error || '' }</div>
         </fielset>

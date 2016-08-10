@@ -51,21 +51,21 @@ export default class SignIn extends Component {
           <div className='pure-control'>
             <label required>Email</label>
             <input name="email" 
-                   value={ vstate.email }
+                   value={ vstate.email.value }
                    onBlur = { SignInUpActions.validateEmail }
-                   onChange={(e) => vstate.email = e.target.value}/>
+                   onChange={(e) => vstate.email.value = e.target.value}/>
           </div>
-          <div style={{ color : 'red'}}>{ vstate.emailError || '' }</div>
+          <div style={{ color : 'red'}}>{ vstate.email.error || '' }</div>
 
           <div>
             <label required>Password</label>
             <input name="password" 
                     type="password" 
-                    value={ vstate.password }
+                    value={ vstate.password.value }
                     onBlur = { SignInUpActions.validatePassword }
-                    onChange={(e) => vstate.password = e.target.value} />
+                    onChange={(e) => vstate.password.value = e.target.value} />
           </div>
-          <div style={{ color : 'red'}}>{ vstate.passwordError || '' }</div>
+          <div style={{ color : 'red'}}>{ vstate.password.error || '' }</div>
           <div>
             <button className='pure-button' onClick={ this.handleSend }>SignIn</button>
           </div>
