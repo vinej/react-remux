@@ -13,7 +13,7 @@ function formControl(name, initValue) {
 }
 // global state
 export let appState = {
-  signInUp : {
+  formSignInUp : {
     @observable email: formControl('email', ''),
     @observable password : formControl('password', ''),
     @observable name : formControl('name', 'jyv'),

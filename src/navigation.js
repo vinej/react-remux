@@ -15,9 +15,9 @@ import RouteActions from './actions/route_actions'
 import SignInUpActions from './actions/signinup_actions'
 
 export let stateNavigator = new StateNavigator([
-    {key: 'signin',   route: 'signin',  init: SignInUpActions.init , component: <SignIn vstate={ appState.signInUp } /> },
+    {key: 'signin',   route: 'signin',  init: SignInUpActions.init , component: <SignIn vstate={ appState.formSignInUp } /> },
     {key: 'signout',  route: 'signout', init: null ,component: <SignOut /> },
-    {key: 'signup',   route: 'signup',  init: SignInUpActions.init, component: <SignUp vstate={ appState.signInUp } /> },
+    {key: 'signup',   route: 'signup',  init: SignInUpActions.init, component: <SignUp vstate={ appState.formSignInUp } /> },
     {key: 'todos',    route: 'todos',   init: null, component: <Todos store={ todoStore } /> },
     {key: 'welcome',  route: '',        init: null, component : <Welcome /> }
 ]);

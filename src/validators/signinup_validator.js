@@ -10,12 +10,10 @@ export default class SignInUpValidator {
 
   @action
   init(action) {
-    const state = appState.signInUp
-    //state.email = '';
+    const state = appState.formSignInUp
     state.email.error = '';
     state.password.value = '';
     state.password.error = '';
-    //state.name = '';
     state.name.error = '';
     state.confirmPassword.value = '';
     state.confirmPassword.error = '';
@@ -27,7 +25,7 @@ export default class SignInUpValidator {
   validateEmail(action) {
     // simulate a called to the backend.
     setTimeout( function() {
-      const state = appState.signInUp
+      const state = appState.formSignInUp
       state.email.error = ''
       if ( state.email.value === '') {
         state.email.error = 'Email is required'
@@ -39,10 +37,11 @@ export default class SignInUpValidator {
 
   @action
   validatePassword(action) {
-    const state = appState.signInUp
+    const state = appState.formSignInUp
     state.password.error = ''
     if ( state.password.value === '') {
       state.password.error = 'Password is required'
+      state.password.
       state.isError = true
     }
     SignInUpValidator.next(action)
@@ -50,7 +49,7 @@ export default class SignInUpValidator {
 
   @action
   validateConfirmPassword(action) {
-    const state = appState.signInUp
+    const state = appState.formSignInUp
     state.confirmPassword.error = ''
     if ( state.confirmPassword.value === '') {
       state.confirmPassword.error = 'ConfirmPassword is required'
@@ -66,7 +65,7 @@ export default class SignInUpValidator {
 
   @action
   validateName(action) {
-    const state = appState.signInUp
+    const state = appState.formSignInUp
     state.name.error = ''
     if ( state.name.value === '') {
       state.name.error = 'Name is required'
