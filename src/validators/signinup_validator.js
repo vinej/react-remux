@@ -27,8 +27,10 @@ export default class SignInUpValidator {
     setTimeout( function() {
       const state = appState.formSignInUp
       state.email.error = ''
+      state.email.valid === true
       if ( state.email.value === '') {
         state.email.error = 'Email is required'
+        state.email.valid === false
         state.isError = true
       }
       SignInUpValidator.next(action)
@@ -39,9 +41,10 @@ export default class SignInUpValidator {
   validatePassword(action) {
     const state = appState.formSignInUp
     state.password.error = ''
+    state.password.valid = true
     if ( state.password.value === '') {
       state.password.error = 'Password is required'
-      state.password.
+      state.password.valid = false
       state.isError = true
     }
     SignInUpValidator.next(action)

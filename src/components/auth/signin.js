@@ -53,7 +53,7 @@ export default class SignIn extends Component {
             <input name="email" 
                    value={ vstate.email.value }
                    onBlur = { SignInUpActions.validateEmail }
-                   onChange={(e) => vstate.email.value = e.target.value}/>
+                   onChange={(e) => vstate.email.value = e.target.value }/>
           </div>
           <div style={{ color : 'red'}}>{ vstate.email.error || '' }</div>
 
@@ -63,7 +63,7 @@ export default class SignIn extends Component {
                     type="password" 
                     value={ vstate.password.value }
                     onBlur = { SignInUpActions.validatePassword }
-                    onChange={(e) => vstate.password.value = e.target.value} />
+                    onChange={(e) => vstate.password.value = e.target.value } />
           </div>
           <div style={{ color : 'red'}}>{ vstate.password.error || '' }</div>
           <div>
