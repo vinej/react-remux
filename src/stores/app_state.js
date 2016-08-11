@@ -12,11 +12,15 @@ class formControl {
   constuctor(name,initValue) {
     this._name = name
     this._initValue = initValue
-    this._value = initValue  
+    this.init()
+  }
+
+  init() {
+    this._value = this._initValue
+    this.error = ''
     this._dirty = false
     this._touched = false
     this._valid = true
-    this._error = ''  
   }
 
   reset() {

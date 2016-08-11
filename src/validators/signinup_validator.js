@@ -11,12 +11,10 @@ export default class SignInUpValidator {
   @action
   init(action) {
     const state = appState.formSignInUp
-    state.email.error = '';
-    state.password.value = '';
-    state.password.error = '';
-    state.name.error = '';
-    state.confirmPassword.value = '';
-    state.confirmPassword.error = '';
+    state.email.init()
+    state.password.init()
+    state.confirmPassword.init()
+    state.name.init()
     state.error = '';
     state.isError = false;
   }
