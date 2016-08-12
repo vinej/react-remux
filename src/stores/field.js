@@ -1,7 +1,7 @@
 import { observable } from 'mobx'
 
 export default class Field {
-  _type = ''   // not implemented yet
+  _ftype = ''   // not implemented yet
   _initValue = ''
   _name = ''
   _displayName = ''
@@ -11,11 +11,11 @@ export default class Field {
   @observable _valid = true
   @observable _error = ''  
 
-  constructor(name, displayName, type, initValue) {
+  constructor(name, displayName, ftype, initValue) {
     console.log('const', name, initValue)
     this._name = name
     this._displayName = displayName
-    this._type = type
+    this._ftype = ftype
     this._initValue = initValue
     this.init()
   }
@@ -48,8 +48,8 @@ export default class Field {
   get displayName() { return this._displayName }
   set displayName(value) { this._displayName = value }
 
-  get type() { return this._type }
-  set type(value) { this._type = value }
+  get ftype() { return this._ftype }
+  set ftype(value) { this._ftype = value }
 
   get dirty() { return this._dirty }
   set dirty(value) { this._dirty = value }

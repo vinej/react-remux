@@ -4,7 +4,7 @@ import Field from './field'
 // global state
 export let appState = {
   formSignInUp : {
-    email           : new Field('email', 'Email', 'string', ''),
+    email           : new Field('email', 'Email', 'email', ''),
     password        : new Field('password', 'Password', 'string', ''),
     name            : new Field('name', 'Name', 'string', 'jyv'),
     confirmPassword : new Field('confirmPassword', 'ConfirmPassword', 'string', ''),

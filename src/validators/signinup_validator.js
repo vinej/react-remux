@@ -25,7 +25,9 @@ export default class SignInUpValidator extends BaseValidator{
     // simulate a called to the backend.
     setTimeout( function(obj) {
       const state = appState.formSignInUp
-      obj.validRequired(state, state.email)
+      const field = state.email
+      obj.validRequired(state, field)
+      obj.validType(state, field)
       SignInUpValidator.next(action)
     }, 100, this)
   }
@@ -40,10 +42,11 @@ export default class SignInUpValidator extends BaseValidator{
   @action
   validateConfirmPassword(action) {
     const state = appState.formSignInUp
-    this.validRequired(state, state.confirmPassword)
+    const field = state.confirmPassword
+    this.validRequired(state, field)
 
-    if (state.password.value != state.confirmPassword.value) {
-      state.confirmPassword.error = 'Both passwords are not equal'
+    if (state.password.value != field.value) {
+      field.error += (field.error !== '' ? ', ' : '') + 'Both passwords are not equal'
       state.isError = true
     }
     SignInUpValidator.next(action)
@@ -52,7 +55,7 @@ export default class SignInUpValidator extends BaseValidator{
   @action
   validateName(action) {
     const state = appState.formSignInUp
-    this.validRequired(state, state.confirmPassword)
+    this.validRequired(state, state.name)
     SignInUpValidator.next(action)
   }
 }
