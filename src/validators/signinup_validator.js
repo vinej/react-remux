@@ -1,7 +1,8 @@
 import { action } from 'mobx'
 import { appState } from '../stores/app_state'
+import BaseValidator from './base_validator'
 
-export default class SignInUpValidator {
+export default class SignInUpValidator extends BaseValidator{
   static next(action) {
     if (action.next != null) {
       action.next(action)
@@ -22,40 +23,24 @@ export default class SignInUpValidator {
   @action
   validateEmail(action) {
     // simulate a called to the backend.
-    setTimeout( function() {
+    setTimeout( function(obj) {
       const state = appState.formSignInUp
-      state.email.error = ''
-      state.email.valid === true
-      if ( state.email.value === '') {
-        state.email.error = 'Email is required'
-        state.email.valid === false
-        state.isError = true
-      }
+      obj.validRequired(state, state.email)
       SignInUpValidator.next(action)
-    }, 100)
+    }, 100, this)
   }
 
   @action
   validatePassword(action) {
     const state = appState.formSignInUp
-    state.password.error = ''
-    state.password.valid = true
-    if ( state.password.value === '') {
-      state.password.error = 'Password is required'
-      state.password.valid = false
-      state.isError = true
-    }
+    this.validRequired(state, state.password)
     SignInUpValidator.next(action)
   }
 
   @action
   validateConfirmPassword(action) {
     const state = appState.formSignInUp
-    state.confirmPassword.error = ''
-    if ( state.confirmPassword.value === '') {
-      state.confirmPassword.error = 'ConfirmPassword is required'
-      state.isError = true
-    }
+    this.validRequired(state, state.confirmPassword)
 
     if (state.password.value != state.confirmPassword.value) {
       state.confirmPassword.error = 'Both passwords are not equal'
@@ -67,11 +52,7 @@ export default class SignInUpValidator {
   @action
   validateName(action) {
     const state = appState.formSignInUp
-    state.name.error = ''
-    if ( state.name.value === '') {
-      state.name.error = 'Name is required'
-      state.isError = true
-    }
+    this.validRequired(state, state.confirmPassword)
     SignInUpValidator.next(action)
   }
 }
